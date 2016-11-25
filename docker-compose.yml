@@ -1,0 +1,50 @@
+version: "2"
+
+services:
+  api:
+    build: ./api
+    command: npm run start:dev
+    container_name: api
+    volumes:
+      - ./api:/app
+    ports:
+      - "5001:80" #view on port 5001
+      - "5858:5858" # I believe that's the editor
+    networks:
+      - front-tier
+      - back-tier
+    environment:
+      - POSTGRES_USER=regular_user
+      - POSTGRES_PASSWORD=regular_password
+      - POSTGRES_ADMIN_USER=admin_user
+      - POSTGRES_ADMIN_PASSWORD=admin_password
+      - POSTGRES_DB=ocp
+
+  #redis:
+  #  image: redis:alpine
+  #  container_name: redis
+  #  ports: ["6379"]
+  #  networks:
+  #    - back-tier
+
+  db:
+    #image: postgres:latest
+    build: ./db
+    container_name: db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - back-tier
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker_postgres
+      - POSTGRES_DB=ocp
+
+volumes:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
