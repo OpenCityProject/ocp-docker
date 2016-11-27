@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.8">
+ <project-name>Database</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="bd4cc058-4698-42f1-8c27-94ecf33ce9e2" name="Poi" objectType="TABLE" physicalName="Poi" >
+   <remarks>Point of Interest</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="ab17d9e2-d230-4aad-b333-cb0faa18e328" autoIncrement="false" autoIncrementSequenceName="Poi_poi_name_seq" defaultValue="" name="poi_name" nullable="0" physicalName="poi_name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="08d1488a-1e6b-49cb-b218-8ffaf940a757" autoIncrement="false" autoIncrementSequenceName="Poi_gps_coordinate_seq" defaultValue="" name="gps_coordinate" nullable="0" physicalName="gps_coordinate" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
+     <remarks>GPS Coordinate - should use geography data type.</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="aa54eaff-2d60-4998-8be6-24842e9eef9f" autoIncrement="false" autoIncrementSequenceName="Poi_expiry_date_seq" defaultValue="" name="expiry_date" nullable="0" physicalName="expiry_date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
+     <remarks>DateTime with Timezone.</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="7300f94d-519e-4dc5-b955-afd791ee05ab" autoIncrement="false" autoIncrementSequenceName="Poi_when_added_seq" defaultValue="" name="when_added" nullable="0" physicalName="when_added" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
+     <remarks>DateTime with Timezone</remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="60d33bb0-d351-407a-b594-e6dd3b580c79" autoIncrement="false" autoIncrementSequenceName="Poi_who_added_user_id_seq" defaultValue="" name="who_added_user_id" nullable="0" physicalName="who_added_user_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL7" populated="true" UUID="28b0d66f-d5e4-406a-acfc-c6e65ee6f3f6" autoIncrement="false" autoIncrementSequenceName="Poi_when_updated_seq" defaultValue="" name="when_updated" nullable="1" physicalName="when_updated" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
+     <remarks>DateTime with Timezone</remarks>
+    </column>
+    <column id="COL8" populated="true" UUID="c4c6493a-78a1-4a5d-94a8-aa108a800ae3" autoIncrement="false" autoIncrementSequenceName="Poi_who_updated_user_id_seq" defaultValue="" name="who_updated_user_id" nullable="1" physicalName="who_updated_user_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX9" populated="true" UUID="881ecec0-2563-4bf0-9ded-5942030ac003" clustered="true" name="id" physicalName="poi_id" primaryKeyIndex="true" unique="true" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB10" populated="true" UUID="af2c12c5-b64c-43b5-82e3-a03f2acc55f3" name="Category" objectType="TABLE" physicalName="Category" >
+   <remarks></remarks>
+   <folder id="FOLTAB101" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL11" populated="true" UUID="0cad2499-84c2-4762-b650-21b9c9fe1644" autoIncrement="false" autoIncrementSequenceName="Category_category_name_seq" defaultValue="" name="category_name" nullable="0" physicalName="category_name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB103" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB102" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB104" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX12" populated="true" UUID="d7300ed2-1bda-45a1-a2fb-c76857042caa" clustered="true" name="id" physicalName="category_id" primaryKeyIndex="true" unique="true" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB13" populated="true" UUID="1e3d650f-497e-4caf-beb6-629e632e1200" name="Tag" objectType="TABLE" physicalName="Tag" >
+   <remarks></remarks>
+   <folder id="FOLTAB131" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL14" populated="true" UUID="0e94bf32-f71c-4dfa-bf3e-cf9dba5faf2b" autoIncrement="false" autoIncrementSequenceName="Tag_tag_name_seq" defaultValue="" name="tag_name" nullable="0" physicalName="tag_name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB133" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB132" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB134" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX15" populated="true" UUID="91330cb8-c524-4986-b26c-a2139d20bdb5" clustered="true" name="id" physicalName="tag_id" primaryKeyIndex="true" unique="true" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB16" populated="true" UUID="015f9c16-5ca9-433a-9770-dd3df6456c70" name="PoiCategory" objectType="TABLE" physicalName="PoiCategory" >
+   <remarks>Should remove the primary key, and rely on the unique key between the poi_id and category_id</remarks>
+   <folder id="FOLTAB161" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL17" populated="true" UUID="42f66919-3a5f-42de-8ab0-a5a7c033f885" autoIncrement="false" autoIncrementSequenceName="PoiCategory_poi_id_seq" defaultValue="" name="poi_id" nullable="0" physicalName="poi_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL18" populated="true" UUID="75c05887-2ff2-43ec-85d5-596abd7f2b1e" autoIncrement="false" autoIncrementSequenceName="PoiCategory_category_id_seq" defaultValue="" name="category_id" nullable="0" physicalName="category_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB163" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB162" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB164" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX19" populated="true" UUID="1b049cdc-ffb0-4266-aab9-19a08048868d" clustered="false" name="id" physicalName="id" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB20" populated="true" UUID="f3e34893-c49a-449f-be89-4855a8893bc8" name="PoiRecurrence" objectType="TABLE" physicalName="PoiRecurrence" >
+   <remarks></remarks>
+   <folder id="FOLTAB201" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL21" populated="true" UUID="186dc8c7-f1f9-4bd4-99c1-3746de56e04c" autoIncrement="false" autoIncrementSequenceName="PoiRecurrence_poi_id_seq" defaultValue="" name="poi_id" nullable="0" physicalName="poi_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB203" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB202" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB204" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX22" populated="true" UUID="ac0a539b-77c8-45e7-84dd-67a01deedd02" clustered="true" name="id" physicalName="id" primaryKeyIndex="true" unique="true" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB23" populated="true" UUID="49a0a4e1-5335-4af6-8db2-1a7b8e6c8e05" name="PoiTag" objectType="TABLE" physicalName="PoiTag" >
+   <remarks></remarks>
+   <folder id="FOLTAB231" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL24" populated="true" UUID="effab117-5d98-4b76-b678-4be67acb78a8" autoIncrement="false" autoIncrementSequenceName="PoiTag_poi_id_seq" defaultValue="" name="poi_id" nullable="0" physicalName="poi_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    <column id="COL25" populated="true" UUID="8ba42313-9a85-4001-a7c6-3e35a8278525" autoIncrement="false" autoIncrementSequenceName="PoiTag_poi_id_seq" defaultValue="" name="tag_id" nullable="0" physicalName="poi_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB233" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB232" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB234" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX26" populated="true" UUID="6e70db45-5ada-4c1d-8ec3-a117dadc7ebe" clustered="true" name="id" physicalName="id" primaryKeyIndex="true" unique="true" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB27" populated="true" UUID="c79201f5-19c6-4ae7-a196-5fb2146063c2" name="RecurrenceType" objectType="TABLE" physicalName="RecurrenceType" >
+   <remarks>- Every Day
+- Every Week
+- Every Fortnight
+- Every Month
+- Every Year
+- Custom
+-- Frequency
+--- Daily
+---- e.g. event will occur every 3 days
+--- Weekly
+---- e.g. event will occur every 3 weeks on Tuesdaya and Wednesday
+--- Monthly
+---- e.g. event will occur every 3 months on the 10th, or event will occur every 3 months on the second Monday
+--- Annually
+---- e.g. event will occur every 3 years in June on the last Sunday</remarks>
+   <folder id="FOLTAB271" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL28" populated="true" UUID="fad5efca-a350-4e5d-8a2c-c4ccd3baeba8" autoIncrement="false" autoIncrementSequenceName="RecurrenceType_name_seq" defaultValue="" name="name" nullable="0" physicalName="name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB273" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB272" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB274" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX29" populated="true" UUID="1dfe253a-f0ab-4dd4-9b14-5c241f48319f" clustered="false" name="id" physicalName="id" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <table id="TAB30" populated="true" UUID="c862a538-aaaf-4286-805c-5cc91ccfc82b" name="User" objectType="TABLE" physicalName="User" >
+   <remarks></remarks>
+   <folder id="FOLTAB301" populated="true" name="Columns" physicalName="Columns" type="1">
+    <index id="IDX31" populated="true" UUID="76a6d6bf-6959-4b99-a8f6-2e5f3026b7df" clustered="false" name="user_id" physicalName="user_id" primaryKeyIndex="true" unique="false" >
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL32" populated="true" UUID="21066d91-7e7b-494c-90f2-75bb9ac7d671" deferrability="7" deleteRule="0" fk-table-ref="TAB16" fkCardinality="7" identifying="true" name="POI_POI_Category_fk" physicalName="POI_POI_Category_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="0" >
+   </relationship>
+   <relationship id="REL33" populated="true" UUID="d64abb16-ebb6-438d-94c1-c2b74af974b5" deferrability="7" deleteRule="0" fk-table-ref="TAB20" fkCardinality="7" identifying="true" name="POI_POI_Recurrence_fk" physicalName="POI_POI_Recurrence_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="0" >
+   </relationship>
+   <relationship id="REL34" populated="true" UUID="4758d54e-b0f9-4c1b-b2a1-2a8e4b03b22c" deferrability="7" deleteRule="0" fk-table-ref="TAB23" fkCardinality="7" identifying="true" name="POI_POI_Tag_fk" physicalName="POI_POI_Tag_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="0" >
+   </relationship>
+   <relationship id="REL35" populated="true" UUID="e539dcf4-7046-4b78-bf11-5cf8c46af8b9" deferrability="7" deleteRule="0" fk-table-ref="TAB16" fkCardinality="7" identifying="true" name="Category_POI_Category_fk" physicalName="Category_POI_Category_fk" pk-table-ref="TAB10" pkCardinality="2" updateRule="0" >
+   </relationship>
+   <relationship id="REL36" populated="true" UUID="440e6248-ca5f-419b-8b14-6b41b2f64558" deferrability="7" deleteRule="0" fk-table-ref="TAB23" fkCardinality="7" identifying="true" name="Tag_POI_Tag_fk" physicalName="Tag_POI_Tag_fk" pk-table-ref="TAB13" pkCardinality="2" updateRule="0" >
+   </relationship>
+   <relationship id="REL37" populated="true" UUID="f19e5c89-b97c-40c8-80e3-883e3ee1b3e9" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="User_Poi_fk" physicalName="User_Poi_fk" pk-table-ref="TAB30" pkCardinality="2" updateRule="3" >
+   </relationship>
+   <relationship id="REL38" populated="true" UUID="32b908c7-975e-4e56-9196-774fb9347835" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="true" name="User_Poi_fk1" physicalName="User_Poi_fk1" pk-table-ref="TAB30" pkCardinality="2" updateRule="3" >
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="291" y="242" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB10" x="277" y="556" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB13" x="20" y="100" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB16" x="29" y="437" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB20" x="608" y="81" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB23" x="49" y="271" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB27" x="607" y="253" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB30" x="754" y="464" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL32" pkConnection="0.26877470355731226" fkConnection="0.7529411764705882" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL35" pkConnection="0.2127659574468085" fkConnection="0.8253968253968254" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL33" pkConnection="0.8227848101265823" fkConnection="0.2127659574468085" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL36" pkConnection="0.49407114624505927" fkConnection="0.5058823529411764" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL34" pkConnection="0.06993006993006994" fkConnection="0.5714285714285714" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL37" pkConnection="0.3225806451612903" fkConnection="0.9230769230769231" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+  <table-link relationship-ref="REL38" pkConnection="0.3225806451612903" fkConnection="0.7832167832167832" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="18"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>
