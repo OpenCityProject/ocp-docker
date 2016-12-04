@@ -8,6 +8,16 @@ Just run the following command:
 docker-compose up
 ```
 
+Database
+--------
+A quick initial sketch of the database layout, needs to be revamped
+
+![DB Diagram](db/db-design.png "OCP Database design")
+
+Also useful resource for auditing:
+
+* http://stackoverflow.com/questions/1523446/is-it-possible-to-get-a-history-of-queries-made-in-postgres
+
 Docker Compose
 --------------
 Of note, the database is held by docker, you may want to setup a replication to somewhere else
