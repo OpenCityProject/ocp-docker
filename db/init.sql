@@ -24,6 +24,14 @@ CREATE TABLE log (
 , log TEXT NOT NULL
 , when_added TIMESTAMP NOT NULL DEFAULT NOW()
 );
+-- https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres/
+CREATE TABLE config ( -- probably better to use one row, many columns?
+  seq SERIAL PRIMARY KEY
+, key TEXT NOT NULL
+, value TEXT NOT NULL
+, when_added TIMESTAMP NOT NULL DEFAULT NOW()
+, when_updated TIMESTAMP NOT NULL DEFAULT NOW()
+);
 CREATE TABLE person (
   username CITEXT PRIMARY KEY
 , name TEXT -- do we even fill this in?
@@ -53,12 +61,6 @@ CREATE TABLE image (
 , when_added TIMESTAMP NOT NULL DEFAULT NOW()
 , when_updated TIMESTAMP NOT NULL DEFAULT NOW()
 );
--- https://blog.codeship.com/unleash-the-power-of-storing-json-in-postgres/
-CREATE TABLE config ( -- probably better to use one row, many columns?
-  seq SERIAL PRIMARY KEY
-, key TEXT NOT NULL
-, value TEXT NOT NULL
-);
 CREATE TABLE session (
   session_id UUID PRIMARY KEY DEFAULT uuid_generate_v1mc()
 , username CITEXT NOT NULL
@@ -66,6 +68,36 @@ CREATE TABLE session (
 , when_added TIMESTAMP NOT NULL DEFAULT NOW()
 , when_updated TIMESTAMP NOT NULL DEFAULT NOW()
 , when_expire TIMESTAMP -- null means it never expires
+);
+
+-- Main db design for Open City Project
+CREATE TABLE poi (
+  poi_id UUID PRIMARY KEY DEFAULT uuid_generate_v1mc()
+, poi_name TEXT NOT NULL
+, poi_type TEXT NOT NULL -- 'poi or event'
+, gps_lat TEXT NOT NULL
+, gps_lng TEXT NOT NULL
+, category TEXT NOT NULL
+, expiry_date TIMESTAMP NOT NULL
+, when_added TIMESTAMP NOT NULL DEFAULT NOW()
+, when_updated TIMESTAMP NOT NULL DEFAULT NOW()
+, who_added_username UUID
+, who_updated_username UUID
+, state TEXT -- NULL - not verified, verified, changed, out of date, dangerous
+);
+CREATE TABLE poi_schedule (
+  poi_id UUID NOT NULL
+, schedule_id UUID NOT NULL
+)
+CREATE TABLE schedule (
+  schedule_id UUID PRIMARY KEY DEFAULT uuid_generate_v1mc()
+, repeat_type TEXT -- 'day week month, weekday etc, null means no repeat, custom type
+, repeat_custom TEXT -- 'only for custom - json really
+, start_time TIMESTAMP NOT NULL
+, end_time TIMESTAMP NOT NULL
+, finish_date TIMESTAMP NOT NULL
+, when_added TIMESTAMP NOT NULL DEFAULT NOW()
+, when_updated TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 -- Trigger for each table that should have its timestamp updated whenever an update is called
@@ -76,7 +108,7 @@ DO $$ BEGIN
       BEFORE UPDATE ON ' || quote_ident(t) || '
       FOR EACH ROW EXECUTE PROCEDURE set_updated_timestamp();
   ', E'\n')
-FROM unnest('{person, person_photo, image, session}'::text[]) t -- list your tables here
+FROM unnest('{person, person_photo, image, session, poi, schedule}'::text[]) t -- list your tables here
   );
 END $$;
 -- http://dba.stackexchange.com/questions/62033/how-to-reuse-an-update-trigger-for-multiple-tables-in-postgresql
@@ -92,6 +124,20 @@ CREATE INDEX person_photo__image_id ON person_photo (image_id);
 
 CREATE INDEX session__username ON session (username);
 
+CREATE INDEX poi__poi_type ON poi (poi_type);
+CREATE INDEX poi__gps_lat ON poi (gps_lat);
+CREATE INDEX poi__gps_lng ON poi (gps_lng);
+CREATE INDEX poi__category ON poi (gps_lng);
+CREATE INDEX poi__expiry_date ON poi (gps_lng);
+CREATE INDEX poi__who_added_username ON poi (who_added_username);
+CREATE INDEX poi__who_updated_username ON poi (who_updated_username);
+CREATE INDEX poi__state ON poi (state);
+
+CREATE INDEX poi_schedule__poi_id ON poi_schedule (poi_id);
+CREATE INDEX poi_schedule__schedule_id ON poi_schedule (schedule_id);
+
+CREATE INDEX schedule__finish_date ON schedule (finish_date);
+
 CREATE INDEX person__when_added ON person (when_added);
 CREATE INDEX person__when_updated ON person (when_updated);
 CREATE INDEX person_photo__when_added ON person_photo (when_added);
@@ -101,6 +147,10 @@ CREATE INDEX image__when_updated ON image (when_updated);
 CREATE INDEX session__when_added ON session (when_added);
 CREATE INDEX session__when_updated ON session (when_updated);
 CREATE INDEX session__when_expire ON session (when_expire);
+CREATE INDEX poi__when_added ON poi (when_added);
+CREATE INDEX poi__when_updated ON poi (when_updated);
+CREATE INDEX schedule__when_added ON schedule (when_added);
+CREATE INDEX schedule__when_updated ON schedule (when_updated);
 
 
 GRANT INSERT ON log TO regular_user;
@@ -108,6 +158,10 @@ GRANT SELECT, INSERT, UPDATE ON person TO regular_user;
 GRANT SELECT, INSERT ON person_photo TO regular_user;
 GRANT SELECT, INSERT ON image TO regular_user;
 GRANT SELECT, INSERT, DELETE ON session TO regular_user;
+
+GRANT SELECT, INSERT, UPDATE ON poi TO regular_user;
+GRANT SELECT, INSERT ON poi_schedule TO regular_user;
+GRANT SELECT, INSERT, UPDATE ON schedule TO regular_user;
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO admin_user;
 
