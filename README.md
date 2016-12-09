@@ -8,6 +8,14 @@ Just run the following command:
 docker-compose up
 ```
 
+API
+---
+
+There is a basic api using express in api folder
+
+There is an API spec for swagger in the api-def folder. Go to http://editor.swagger.io/ and paste it in to the editor.
+From there you can generate a server and a client
+
 Database
 --------
 A quick initial sketch of the database layout, needs to be revamped
