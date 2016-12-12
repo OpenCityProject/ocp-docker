@@ -67,7 +67,7 @@
     <column id="COL14" populated="true" UUID="08d1488a-1e6b-49cb-b218-8ffaf940a757" autoIncrement="false" autoIncrementSequenceName="poi_location_gps_coordinate_seq" defaultValue="" name="location_gps_coordinate" nullable="1" physicalName="location_gps_coordinate" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
      <remarks>GPS Coordinate - should use geography data type.</remarks>
     </column>
-    <column id="COL15" populated="true" UUID="bb3acecc-c306-4b87-8799-6dd71c8b3e0a" autoIncrement="false" autoIncrementSequenceName="poi_location_radius_in_metre_seq" defaultValue="" name="location_radius_in_metre" nullable="1" physicalName="location_radius_in_metre" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+    <column id="COL15" populated="true" UUID="bb3acecc-c306-4b87-8799-6dd71c8b3e0a" autoIncrement="false" autoIncrementSequenceName="poi_location_polygon_seq" defaultValue="" name="location_polygon" nullable="1" physicalName="location_polygon" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1111" userDefinedTypeUUID="d9e42a14-4d15-4b55-b176-ecbba383bbdd" >
      <remarks></remarks>
     </column>
     <column id="COL16" populated="true" UUID="b775d9e6-0e78-4dac-83b3-ba5cb8d86740" autoIncrement="false" autoIncrementSequenceName="recurrence_rule_recurrence_rule_id_seq" defaultValue="" name="recurrence_rule_id" nullable="0" physicalName="recurrence_rule_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-5" userDefinedTypeUUID="433cc8af-284d-4abb-8ef7-08ebcb34dbf1" >
@@ -679,7 +679,7 @@ Locked</remarks>
  <ddl-generator type="ca.sqlpower.architect.ddl.LiquibaseDDLGenerator" allow-connection="false"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="0.7071067811865471" viewportX="377" viewportY="855" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="0.7071067811865471" viewportX="0" viewportY="855" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB10" x="1571" y="1606" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB28" x="3063" y="1980" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB33" x="20" y="1027" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
