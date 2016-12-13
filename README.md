@@ -20,7 +20,7 @@ Database
 --------
 A quick initial sketch of the database layout, needs to be revamped
 
-![DB Diagram](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/OpenCityProject/ocp-docker/dbdesign/db/db-design.pdf "OCP Database design")
+[embed]https://docs.google.com/viewer?url=https://raw.githubusercontent.com/OpenCityProject/ocp-docker/dbdesign/db/db-design.pdf[/embed]
 
 Also useful resource for auditing:
 
