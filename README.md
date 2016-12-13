@@ -20,7 +20,7 @@ Database
 --------
 A quick initial sketch of the database layout, needs to be revamped
 
-![DB Diagram](db/db-design.png "OCP Database design")
+![DB Diagram](db/db-design.pdf "OCP Database design")
 
 Also useful resource for auditing:
 
