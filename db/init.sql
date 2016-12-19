@@ -1,5 +1,30 @@
-CREATE USER regular_user WITH PASSWORD 'regular_password';
-CREATE USER admin_user WITH PASSWORD 'admin_password';
+-- DROP DATABASE "OpenCityProject";
+/*
+CREATE DATABASE "OpenCityProject"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_US.utf8'
+    LC_CTYPE = 'en_US.utf8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+*/
+
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='regular_user') THEN
+        CREATE USER regular_user WITH PASSWORD 'regular_password';
+    END IF;
+END 
+$$;
+
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='admin_user') THEN
+        CREATE USER admin_user WITH PASSWORD 'admin_password';
+    END IF;
+END 
+$$;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -301,6 +326,17 @@ Make a difference';
 
 ALTER SEQUENCE category_category_id_seq OWNED BY category.category_id;
 
+
+CREATE TABLE poi_state (
+                poi_state_id SMALLINT NOT NULL,
+                poi_state_name VARCHAR(20) NOT NULL,
+                CONSTRAINT poi_state_id PRIMARY KEY (poi_state_id)
+);
+COMMENT ON TABLE poi_state IS 'Submitted
+Approved
+Declined
+Deleted';
+
 CREATE TABLE IF NOT EXISTS poi (
                 poi_id UUID DEFAULT uuid_generate_v1mc() NOT NULL,
                 poi_name VARCHAR(200) NOT NULL,
@@ -314,7 +350,7 @@ CREATE TABLE IF NOT EXISTS poi (
                 organiser_participant_id BIGINT,
                 poi_url VARCHAR(2000),
                 poi_description VARCHAR(2000),
-                is_deleted BOOLEAN,
+                poi_state_id SMALLINT NOT NULL,
                 when_added TIMESTAMP DEFAULT NOW() NOT NULL,
                 who_added_patron_id UUID NOT NULL,
                 when_updated TIMESTAMP,
@@ -504,6 +540,13 @@ ON DELETE NO ACTION
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
+ALTER TABLE poi ADD CONSTRAINT poi_state_poi_fk
+FOREIGN KEY (poi_state_id)
+REFERENCES poi_state (poi_state_id)
+ON DELETE NO ACTION
+ON UPDATE CASCADE
+NOT DEFERRABLE;
+
 ALTER TABLE person_saved_poi ADD CONSTRAINT person_person_saved_poi_fk
 FOREIGN KEY (person_id)
 REFERENCES person (person_id)
@@ -565,16 +608,18 @@ END - SQL Power Architect Forward Engineering SQL Script
 **************************************************************************************************/
 
 -- Trigger for each table that should have its timestamp updated whenever an update is called
-DO $$ BEGIN
+DO $$ 
+BEGIN
   EXECUTE (
-  SELECT string_agg('
-    CREATE TRIGGER update_timestamp
-      BEFORE UPDATE ON ' || quote_ident(t) || '
-      FOR EACH ROW EXECUTE PROCEDURE set_updated_timestamp();
-  ', E'\n')
-FROM unnest('{config, person, poi, poi_image, session}'::text[]) t -- list your tables here
+    SELECT string_agg('
+        CREATE TRIGGER update_timestamp
+          BEFORE UPDATE ON ' || quote_ident(t) || '
+          FOR EACH ROW EXECUTE PROCEDURE set_updated_timestamp();
+      ', E'\n')
+    FROM unnest('{config, person, poi, poi_image, session}'::text[]) t -- list your tables here
   );
-END $$;
+END 
+$$;
 -- http://dba.stackexchange.com/questions/62033/how-to-reuse-an-update-trigger-for-multiple-tables-in-postgresql
 
 
