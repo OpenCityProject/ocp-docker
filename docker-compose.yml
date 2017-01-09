@@ -1,14 +1,14 @@
 version: "2"
 
 services:
-  api:
-    build: ./api
-    command: npm run start:dev
-    container_name: api
+  api-def:
+    build: ./api-def/node-server
+    command: npm run start
+    container_name: api-def
     volumes:
-      - ./api:/app
+      - ./api-def/node-server:/app
     ports:
-      - "5001:80" #view on port 5001
+      - "5001:8080" #view on port 5001
       - "5858:5858" # I believe that's the editor
     networks:
       - front-tier

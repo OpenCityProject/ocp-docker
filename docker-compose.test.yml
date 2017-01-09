@@ -1,9 +1,0 @@
-version: "2"
-
-services:
-  api:
-    command: npm run test:unit
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker_postgres
-      - POSTGRES_DB=ocp
