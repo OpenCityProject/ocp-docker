@@ -2,19 +2,20 @@
 
 exports.poiGET = function(args, res, next) {
 
-  var pg = require('pg');
-  var conString = "postgres://admin_user:admin_password@db:5432/ocp";
-  var client = new pg.Client(conString);
-  client.connect();
-  console.log("hurray2");
-  var query = client.query("SELECT * FROM poi");
-  query.on('row', function(row) {
-      console.log(row);
-  });
+// // testing postgres connection
+//   var pg = require('pg');
+//   var conString = "postgres://admin_user:admin_password@db:5432/ocp";
+//   var client = new pg.Client(conString);
+//   client.connect();
 
-  query.on('end', function() {
-      client.end();
-  });
+//   var query = client.query("SELECT * FROM poi");
+//   query.on('row', function(row) {
+//       console.log(row);
+//   });
+
+//   query.on('end', function() {
+//       client.end();
+//   });
 
   /**
    * parameters expected in the args:
