@@ -34,11 +34,11 @@ Of note, the database is held by docker, you may want to setup a replication to 
 docker-compose up # -d for daemon, --build if you make a change
 # remove
 docker-compose down
-docker volume rm ocp_db-data
+docker volume rm ocpdocker_db-data
 
 # Inspect
 docker volume ls
-docker volume inspect ocp_db-data
+docker volume inspect ocpdocker_db-data
 docker ps
 docker-compose ps
 docker images
