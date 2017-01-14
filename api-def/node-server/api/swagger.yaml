@@ -1,0 +1,274 @@
+---
+swagger: "2.0"
+info:
+  description: "Interact with your city with the Open City Project API"
+  version: "1.0.0"
+  title: "Open City Project API"
+host: "api.opencityproject.nz"
+basePath: "/v1"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /poi:
+    get:
+      tags:
+      - "Points of Interest"
+      summary: "Get Points of Interest"
+      description: "The Points of Interest endpoint returns information about the\
+        \ Points of Interest near your location.\n"
+      operationId: "poiGET"
+      parameters:
+      - name: "lat"
+        in: "query"
+        description: "Latitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "lng"
+        in: "query"
+        description: "Longitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      responses:
+        200:
+          description: "An array of Points of Interest"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/POI"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+    post:
+      tags:
+      - "Points of Interest"
+      summary: "Add Point of Interest"
+      description: "The Points of Interest endpoint to add another point of interest\n"
+      operationId: "poiPOST"
+      parameters:
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: true
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+  /poi/{poiId}:
+    delete:
+      tags:
+      - "Points of Interest"
+      summary: "Remove Point of Interest"
+      description: "The Points of Interest endpoint to remove point of interest\n"
+      operationId: "poiPoiIdDELETE"
+      parameters:
+      - name: "poiId"
+        in: "path"
+        description: "The id of the Point of Interest"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: false
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+    patch:
+      tags:
+      - "Points of Interest"
+      summary: "Update Point of Interest"
+      description: "The Points of Interest endpoint to update point of interest\n"
+      operationId: "poiPoiIdPATCH"
+      parameters:
+      - name: "poiId"
+        in: "path"
+        description: "The id of the Point of Interest"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: false
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+  /users:
+    get:
+      tags:
+      - "Users"
+      summary: "Get Users"
+      description: "The users endpoint returns all users in the database\n"
+      operationId: "usersGET"
+      parameters: []
+      responses:
+        200:
+          description: "An array of Users"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    post:
+      tags:
+      - "Users"
+      summary: "Add User"
+      description: "The users endpoint to add another point of interest\n"
+      operationId: "usersPOST"
+      parameters:
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: true
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+  /users/{username}:
+    delete:
+      tags:
+      - "Users"
+      summary: "Remove User"
+      description: "The user endpoint to remove User\n"
+      operationId: "usersUsernameDELETE"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The username of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+    patch:
+      tags:
+      - "Users"
+      summary: "Update User"
+      description: "The users endpoint to update point of interest\n"
+      operationId: "usersUsernamePATCH"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The username of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
+definitions:
+  User:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+        description: "Unique identifier representing a user"
+      name:
+        type: "string"
+        description: "The name the user uses to represent themselves"
+      email:
+        type: "string"
+        description: "The users email address"
+  POI:
+    type: "object"
+    properties:
+      poi_id:
+        type: "string"
+        description: "Unique identifier representing a specific point of interest\
+          \ for a given latitude & longitude."
+      poi_name:
+        type: "string"
+        description: "The name for the Point of Interest"
+      poi_type:
+        type: "string"
+        description: "The type of Point of Interest."
+        enum:
+        - "poi"
+        - "event"
+      gps_lat:
+        type: "string"
+        description: "The latitude for the Point of Interest"
+      gps_lng:
+        type: "string"
+        description: "The longitude for the Point of Interest"
+      category:
+        type: "string"
+        description: "Category for the point of interest"
+        enum:
+        - "First"
+        - "Second"
+        - "Third"
+        - "Fourth"
+        - "Fifth"
+  Success:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+        description: "Simply true for successful api call"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"
