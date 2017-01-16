@@ -16,8 +16,7 @@ paths:
       tags:
       - "Points of Interest"
       summary: "Get Points of Interest"
-      description: "The Points of Interest endpoint returns information about the\
-        \ Points of Interest near your location.\n"
+      description: "Returns information about the Points of Interest near your location.\n"
       operationId: "poiGET"
       parameters:
       - name: "lat"
@@ -26,7 +25,7 @@ paths:
         required: true
         type: "number"
         format: "double"
-      - name: "lng"
+      - name: "long"
         in: "query"
         description: "Longitude component of location."
         required: true
@@ -48,7 +47,7 @@ paths:
       tags:
       - "Points of Interest"
       summary: "Add Point of Interest"
-      description: "The Points of Interest endpoint to add another point of interest\n"
+      description: "Upload a new Point of Interest.\n"
       operationId: "poiPOST"
       parameters:
       - in: "body"
@@ -68,11 +67,35 @@ paths:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "PointsOfInterest"
   /poi/{poiId}:
+    get:
+      tags:
+      - "Point of Interest by ID"
+      summary: "Get Point of Interest by ID"
+      description: "Returns information about the specific Point of Interest.\n"
+      operationId: "poiGETbyID"
+      parameters:
+      - name: "poiId"
+        in: "path"
+        description: "The id of the Point of Interest"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "A single Point of Interest"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/POI"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
     delete:
       tags:
       - "Points of Interest"
-      summary: "Remove Point of Interest"
-      description: "The Points of Interest endpoint to remove point of interest\n"
+      summary: "Remove Point of Interest by ID"
+      description: "Delete a specific Point of Interest.\n"
       operationId: "poiPoiIdDELETE"
       parameters:
       - name: "poiId"
@@ -80,12 +103,6 @@ paths:
         description: "The id of the Point of Interest"
         required: true
         type: "string"
-      - in: "body"
-        name: "poi"
-        description: "Point of Interest object"
-        required: false
-        schema:
-          $ref: "#/definitions/POI"
       responses:
         200:
           description: "Success"
@@ -100,7 +117,7 @@ paths:
       tags:
       - "Points of Interest"
       summary: "Update Point of Interest"
-      description: "The Points of Interest endpoint to update point of interest\n"
+      description: "Update a specific Point of Interest.\n"
       operationId: "poiPoiIdPATCH"
       parameters:
       - name: "poiId"
@@ -129,7 +146,7 @@ paths:
       tags:
       - "Users"
       summary: "Get Users"
-      description: "The users endpoint returns all users in the database\n"
+      description: "Return an array of all users\n"
       operationId: "usersGET"
       parameters: []
       responses:
@@ -147,16 +164,16 @@ paths:
     post:
       tags:
       - "Users"
-      summary: "Add User"
-      description: "The users endpoint to add another point of interest\n"
+      summary: "Add a new User"
+      description: "Return an array of all users\n"
       operationId: "usersPOST"
       parameters:
       - in: "body"
-        name: "poi"
-        description: "Point of Interest object"
+        name: "user"
+        description: "User object"
         required: true
         schema:
-          $ref: "#/definitions/POI"
+          $ref: "#/definitions/User"
       responses:
         200:
           description: "Success"
@@ -167,17 +184,39 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "Users"
-  /users/{username}:
+  /users/{userId}:
+    get:
+      tags:
+      - "Users"
+      summary: "Get User"
+      description: "Get User by ID\n"
+      operationId: "usersUserIdGET"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The ID of the user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Users"
     delete:
       tags:
       - "Users"
       summary: "Remove User"
-      description: "The user endpoint to remove User\n"
-      operationId: "usersUsernameDELETE"
+      description: "Delete User by ID\n"
+      operationId: "usersUserIdDELETE"
       parameters:
-      - name: "username"
+      - name: "userId"
         in: "path"
-        description: "The username of the user"
+        description: "The ID of the user"
         required: true
         type: "string"
       responses:
@@ -194,14 +233,20 @@ paths:
       tags:
       - "Users"
       summary: "Update User"
-      description: "The users endpoint to update point of interest\n"
-      operationId: "usersUsernamePATCH"
+      description: "Update User by ID\n"
+      operationId: "usersUserIdPATCH"
       parameters:
-      - name: "username"
+      - name: "userId"
         in: "path"
-        description: "The username of the user"
+        description: "The ID of the user"
         required: true
         type: "string"
+      - name: "user"
+        in: "body"
+        description: "The User object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
       responses:
         200:
           description: "Success"
@@ -216,59 +261,88 @@ definitions:
   User:
     type: "object"
     properties:
+      userId:
+        type: "string"
+        description: "Unique identifier representing a user"
       username:
         type: "string"
         description: "Unique identifier representing a user"
       name:
         type: "string"
-        description: "The name the user uses to represent themselves"
+        description: "The name of the user"
       email:
         type: "string"
-        description: "The users email address"
+        description: "The email address of the user"
   POI:
     type: "object"
     properties:
-      poi_id:
+      id:
         type: "string"
-        description: "Unique identifier representing a specific point of interest\
-          \ for a given latitude & longitude."
-      poi_name:
+        description: "Unique identifier representing a specific point of interest for a given latitude & longitude"
+      name:
         type: "string"
-        description: "The name for the Point of Interest"
-      poi_type:
+        description: "The name of the Point of Interest"
+      what_makes_it_sweet:
         type: "string"
-        description: "The type of Point of Interest."
-        enum:
-        - "poi"
-        - "event"
+        description: "Few sentences on what makes the Point of Interest sweet"
+      location_title:
+        type: "string"
+        description: "The location of the Point of Interest"
       gps_lat:
         type: "string"
         description: "The latitude for the Point of Interest"
-      gps_lng:
+      gps_long:
         type: "string"
         description: "The longitude for the Point of Interest"
+      start_date:
+        type: "string"
+        description: "The Start Date for the Point of Interest"
+      end_date:
+        type: "string"
+        description: "The End Date for the Point of Interest"
+      opening_hours:
+        type: "string"
+        description: "The Opening Hours of the Point of Interest"
+      is_all_day:
+        type: "boolean"
+        description: "Indicates whether the Point of Interest takes place for the entire day"
+      website_url:
+        type: "string"
+        description: "URL to the Point of Interest on the Open City Project Website"
+      description:
+        type: "string"
+        description: "Description of the Point of Interest"
       category:
         type: "string"
-        description: "Category for the point of interest"
+        description: "Category for the Point of Interest"
         enum:
-        - "First"
-        - "Second"
-        - "Third"
-        - "Fourth"
-        - "Fifth"
+        - "connect_with_others"
+        - "savour_the_moment"
+        - "be_active"
+        - "keep_learning"
+        - "make_a_difference"
   Success:
     type: "object"
     properties:
-      success:
-        type: "boolean"
-        description: "Simply true for successful api call"
+      code:
+        type: "integer"
+        format: "int32"
+        description: "Response code"
+      message:
+        type: "string"
+        description: "Response message"
+      object:
+        type: "object"
+        description: "Response object"
   Error:
     type: "object"
     properties:
       code:
         type: "integer"
         format: "int32"
+        description: "Response code"
       message:
         type: "string"
+        description: "Response message"
       fields:
         type: "string"
