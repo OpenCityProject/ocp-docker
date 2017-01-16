@@ -14,10 +14,10 @@ paths:
   /poi:
     get:
       tags:
-      - "Points of Interest"
+      - "Point of Interest"
       summary: "Get Points of Interest"
       description: "Returns information about the Points of Interest near your location.\n"
-      operationId: "poiGET"
+      operationId: "poiAllGET"
       parameters:
       - name: "lat"
         in: "query"
@@ -45,7 +45,7 @@ paths:
       x-swagger-router-controller: "PointsOfInterest"
     post:
       tags:
-      - "Points of Interest"
+      - "Point of Interest"
       summary: "Add Point of Interest"
       description: "Upload a new Point of Interest.\n"
       operationId: "poiPOST"
@@ -69,10 +69,10 @@ paths:
   /poi/{poiId}:
     get:
       tags:
-      - "Point of Interest by ID"
+      - "Point of Interest"
       summary: "Get Point of Interest by ID"
       description: "Returns information about the specific Point of Interest.\n"
-      operationId: "poiGETbyID"
+      operationId: "poiGET"
       parameters:
       - name: "poiId"
         in: "path"
@@ -84,8 +84,7 @@ paths:
           description: "A single Point of Interest"
           schema:
             type: "object"
-            items:
-              $ref: "#/definitions/POI"
+            properties: {}
         default:
           description: "Unexpected error"
           schema:
@@ -93,10 +92,10 @@ paths:
       x-swagger-router-controller: "PointsOfInterest"
     delete:
       tags:
-      - "Points of Interest"
+      - "Point of Interest"
       summary: "Remove Point of Interest by ID"
       description: "Delete a specific Point of Interest.\n"
-      operationId: "poiPoiIdDELETE"
+      operationId: "poiDELETE"
       parameters:
       - name: "poiId"
         in: "path"
@@ -115,10 +114,10 @@ paths:
       x-swagger-router-controller: "PointsOfInterest"
     patch:
       tags:
-      - "Points of Interest"
+      - "Point of Interest"
       summary: "Update Point of Interest"
       description: "Update a specific Point of Interest.\n"
-      operationId: "poiPoiIdPATCH"
+      operationId: "poiPATCH"
       parameters:
       - name: "poiId"
         in: "path"
@@ -144,10 +143,10 @@ paths:
   /users:
     get:
       tags:
-      - "Users"
+      - "User"
       summary: "Get Users"
       description: "Return an array of all users\n"
-      operationId: "usersGET"
+      operationId: "usersAllGET"
       parameters: []
       responses:
         200:
@@ -163,10 +162,10 @@ paths:
       x-swagger-router-controller: "Users"
     post:
       tags:
-      - "Users"
+      - "User"
       summary: "Add a new User"
       description: "Return an array of all users\n"
-      operationId: "usersPOST"
+      operationId: "userPOST"
       parameters:
       - in: "body"
         name: "user"
@@ -187,10 +186,10 @@ paths:
   /users/{userId}:
     get:
       tags:
-      - "Users"
+      - "User"
       summary: "Get User"
       description: "Get User by ID\n"
-      operationId: "usersUserIdGET"
+      operationId: "userGET"
       parameters:
       - name: "userId"
         in: "path"
@@ -209,10 +208,10 @@ paths:
       x-swagger-router-controller: "Users"
     delete:
       tags:
-      - "Users"
+      - "User"
       summary: "Remove User"
       description: "Delete User by ID\n"
-      operationId: "usersUserIdDELETE"
+      operationId: "userDELETE"
       parameters:
       - name: "userId"
         in: "path"
@@ -231,18 +230,18 @@ paths:
       x-swagger-router-controller: "Users"
     patch:
       tags:
-      - "Users"
+      - "User"
       summary: "Update User"
       description: "Update User by ID\n"
-      operationId: "usersUserIdPATCH"
+      operationId: "userPATCH"
       parameters:
       - name: "userId"
         in: "path"
         description: "The ID of the user"
         required: true
         type: "string"
-      - name: "user"
-        in: "body"
+      - in: "body"
+        name: "user"
         description: "The User object"
         required: true
         schema:
@@ -278,7 +277,8 @@ definitions:
     properties:
       id:
         type: "string"
-        description: "Unique identifier representing a specific point of interest for a given latitude & longitude"
+        description: "Unique identifier representing a specific point of interest\
+          \ for a given latitude & longitude"
       name:
         type: "string"
         description: "The name of the Point of Interest"
@@ -305,7 +305,8 @@ definitions:
         description: "The Opening Hours of the Point of Interest"
       is_all_day:
         type: "boolean"
-        description: "Indicates whether the Point of Interest takes place for the entire day"
+        description: "Indicates whether the Point of Interest takes place for the\
+          \ entire day"
       website_url:
         type: "string"
         description: "URL to the Point of Interest on the Open City Project Website"
@@ -334,6 +335,7 @@ definitions:
       object:
         type: "object"
         description: "Response object"
+        properties: {}
   Error:
     type: "object"
     properties:
