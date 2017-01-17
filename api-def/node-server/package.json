@@ -4,9 +4,9 @@
   "description": "Interact with your city with the Open City Project API",
   "main": "index.js",
   "scripts": {
-	"prestart": "npm install",
-	"start": "node index.js"
-  },  
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
   "keywords": [
     "swagger"
   ],
@@ -15,6 +15,7 @@
   "dependencies": {
     "connect": "^3.2.0",
     "js-yaml": "^3.3.0",
+    "pg": "^6.1.2",
     "swagger-tools": "0.10.1"
   }
 }
