@@ -1,15 +1,28 @@
----
 swagger: "2.0"
+
+################################################################################
+# API Information                                                              #
+################################################################################
 info:
-  description: "Interact with your city with the Open City Project API"
-  version: "1.0.0"
-  title: "Open City Project API"
-host: "api.opencityproject.nz"
-basePath: "/v1"
+  title: Open City Project API
+  description: Interact with your city with the Open City Project API
+  version: 1.0.0
+  
+################################################################################
+# Host, Base Path, Schemes and Content Types                                   #
+################################################################################
+host: api.opencityproject.nz
 schemes:
-- "https"
+  - https
+basePath: /v1
+consumes:
+  - application/json
 produces:
-- "application/json"
+  - application/json
+  
+################################################################################
+# Paths                                                                        #
+################################################################################
 paths:
   /poi:
     get:
@@ -78,7 +91,7 @@ paths:
         in: "path"
         description: "The id of the Point of Interest"
         required: true
-        type: "string"
+        type: string
       responses:
         200:
           description: "A single Point of Interest"
@@ -101,7 +114,7 @@ paths:
         in: "path"
         description: "The id of the Point of Interest"
         required: true
-        type: "string"
+        type: string
       responses:
         200:
           description: "Success"
@@ -123,7 +136,7 @@ paths:
         in: "path"
         description: "The id of the Point of Interest"
         required: true
-        type: "string"
+        type: string
       - in: "body"
         name: "poi"
         description: "Point of Interest object"
@@ -195,7 +208,7 @@ paths:
         in: "path"
         description: "The ID of the user"
         required: true
-        type: "string"
+        type: string
       responses:
         200:
           description: "Success"
@@ -217,7 +230,7 @@ paths:
         in: "path"
         description: "The ID of the user"
         required: true
-        type: "string"
+        type: string
       responses:
         200:
           description: "Success"
@@ -239,7 +252,7 @@ paths:
         in: "path"
         description: "The ID of the user"
         required: true
-        type: "string"
+        type: string
       - in: "body"
         name: "user"
         description: "The User object"
@@ -256,95 +269,93 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "Users"
+
+################################################################################
+# Definitions                                                                  #
+################################################################################      
 definitions:
   User:
-    type: "object"
+    type: object
     properties:
       userId:
-        type: "string"
+        type: string
         description: "Unique identifier representing a user"
       username:
-        type: "string"
+        type: string
         description: "Unique identifier representing a user"
       name:
-        type: "string"
+        type: string
         description: "The name of the user"
       email:
-        type: "string"
+        type: string
         description: "The email address of the user"
   POI:
-    type: "object"
+    type: object
     properties:
       id:
-        type: "string"
+        type: string
         description: "Unique identifier representing a specific point of interest\
           \ for a given latitude & longitude"
       name:
-        type: "string"
+        type: string
         description: "The name of the Point of Interest"
-      what_makes_it_sweet:
-        type: "string"
-        description: "Few sentences on what makes the Point of Interest sweet"
-      location_title:
-        type: "string"
-        description: "The location of the Point of Interest"
       gps_lat:
-        type: "string"
+        type: string
         description: "The latitude for the Point of Interest"
       gps_long:
-        type: "string"
+        type: string
         description: "The longitude for the Point of Interest"
+      location_polygon:
+        type: string
+        description: "The location polygon for the Point of Interest"
       start_date:
-        type: "string"
+        type: string
         description: "The Start Date for the Point of Interest"
       end_date:
-        type: "string"
+        type: string
         description: "The End Date for the Point of Interest"
       opening_hours:
-        type: "string"
+        type: string
         description: "The Opening Hours of the Point of Interest"
       is_all_day:
-        type: "boolean"
+        type: boolean
         description: "Indicates whether the Point of Interest takes place for the\
           \ entire day"
-      website_url:
-        type: "string"
-        description: "URL to the Point of Interest on the Open City Project Website"
+      poi_url:
+        type: string
+        description: "URL to an external website for the Point of Interest"
       description:
-        type: "string"
+        type: string
         description: "Description of the Point of Interest"
-      category:
-        type: "string"
-        description: "Category for the Point of Interest"
-        enum:
-        - "connect_with_others"
-        - "savour_the_moment"
-        - "be_active"
-        - "keep_learning"
-        - "make_a_difference"
+      categories:
+        type: string
+        description: "A list of categories for the Point of Interest, deliminated by commas"
+      tags:
+        type: string
+        description: "A list of tags for the Point of Interest, deliminated by commas"
   Success:
-    type: "object"
+    type: object
     properties:
       code:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
         description: "Response code"
       message:
-        type: "string"
+        type: string
         description: "Response message"
       object:
         type: "object"
         description: "Response object"
         properties: {}
   Error:
-    type: "object"
+    type: object
     properties:
       code:
-        type: "integer"
-        format: "int32"
+        type: integer
+        format: int32
         description: "Response code"
       message:
-        type: "string"
+        type: string
         description: "Response message"
       fields:
-        type: "string"
+        type: string
