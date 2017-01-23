@@ -2,30 +2,23 @@ version: "3"
 
 services:
   api:
-    build: ./api
-    command: npm run start:dev
+    build: ./api-def/node-server
+    command: npm run start
     container_name: api
     volumes:
       - ./api:/app
     ports:
-      - "5001:80" #view on port 5001
-      - "5858:5858" # I believe that's the editor
+      - "80:80" # API is listening on port 80
     networks:
       - front-tier
       - back-tier
     environment:
+      - PORT=80 # Port for Node.js to listen on
       - POSTGRES_USER=regular_user
       - POSTGRES_PASSWORD=regular_password
       - POSTGRES_ADMIN_USER=admin_user
       - POSTGRES_ADMIN_PASSWORD=admin_password
       - POSTGRES_DB=ocp
-
-  #redis:
-  #  image: redis:alpine
-  #  container_name: redis
-  #  ports: ["6379"]
-  #  networks:
-  #    - back-tier
 
   db:
     #image: postgres:latest
