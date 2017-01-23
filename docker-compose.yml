@@ -18,7 +18,11 @@ services:
       - POSTGRES_PASSWORD=regular_password
       - POSTGRES_ADMIN_USER=admin_user
       - POSTGRES_ADMIN_PASSWORD=admin_password
+      - POSTGRES_SERVER=localhost
+      - POSTGRES_PORT=5432
       - POSTGRES_DB=ocp
+      - POSTGRES_MAX_CLIENT=10
+      - POSTGRES_IDLE_TIMEOUT_MILLIS=30000
 
   db:
     #image: postgres:latest
