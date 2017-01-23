@@ -5,7 +5,7 @@ var http = require('http');
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var fs = require('fs');
-var serverPort = 8080;
+var serverPort = process.env.PORT || 8080; // use port 8080 unless there exists a preconfigured port
 
 // swaggerRouter configuration
 var options = {
