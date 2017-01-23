@@ -11,9 +11,9 @@ info:
 ################################################################################
 # Host, Base Path, Schemes and Content Types                                   #
 ################################################################################
-host: api.opencityproject.nz
+host: localhost:8080
 schemes:
-  - https
+  - http
 basePath: /v1
 consumes:
   - application/json
@@ -55,7 +55,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointsOfInterest"
+      x-swagger-router-controller: "PointOfInterest"
     post:
       tags:
       - "Point of Interest"
