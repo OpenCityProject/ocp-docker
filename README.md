@@ -18,7 +18,7 @@ From there you can generate a server and a client
 
 Database
 --------
-A quick initial sketch of the database layout, needs to be revamped
+Database Entity Relationship diagram
 
 ![DB Diagram](/db/db-design.pdf "OCP Database design")
 
