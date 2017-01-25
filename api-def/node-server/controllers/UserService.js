@@ -162,18 +162,48 @@ exports.usersAllGET = function(args, res, next) {
    *
    * returns List
    **/
-  var examples = {};
-  examples['application/json'] = [ {
-  "name" : "aeiou",
-  "id" : "aeiou",
-  "email" : "aeiou",
-  "username" : "aeiou"
-} ];
-  if (Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  } else {
-    res.end();
-  }
+ const databaseService = require('../database/databaseService');
+    databaseService.executeQuery("\
+            SELECT \
+              p.*, \
+              pt.person_type_name,\
+              ps.person_state_name,\
+              op.oauth_provider_name\
+            FROM person AS p\
+              INNER JOIN person_type AS pt ON pt.person_type_id = p.person_type_id\
+              INNER JOIN person_state AS ps ON ps.person_state_id = p.person_state_id\
+              LEFT JOIN oauth_provider AS op ON op.oauth_provider_id = p.oauth_provider_id\
+          ", function(err, sqlResult) {
+        if (err) {
+            console.error("Error occurred", err);
+            res.end();
+        }
+
+        var result = {};
+        result['application/json'] = [];
+
+        var i = 0
+        for (i = 0; i < sqlResult.rows.length; i++) {
+            result['application/json'].push({
+                "id": sqlResult.rows[i].person_id,
+                "name": sqlResult.rows[i].person_name,
+                "email": sqlResult.rows[i].email,
+                "phone": sqlResult.rows[i].phone_number,
+                "type": sqlResult.rows[i].person_type_name,
+                "state": sqlResult.rows[i].person_state_name,
+                "oauth_provider": sqlResult.rows[i].oauth_provider_name,
+                "oauth_token": sqlResult.rows[i].oauth_token,
+                "oauth_token_expiration": sqlResult.rows[i].oauth_token_expiration,
+                
+            })
+        }
+
+        if (Object.keys(result).length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(result[Object.keys(result)[0]] || {}, null, 2));
+        } else {
+            res.end();
+        }
+    })
 }
 
