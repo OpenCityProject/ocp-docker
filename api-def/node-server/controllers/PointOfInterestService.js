@@ -12,17 +12,17 @@ exports.poiAllGET = function(args, res, next) {
   var examples = {};
   examples['application/json'] = [ {
   "end_date" : "aeiou",
+  "poi_url" : "aeiou",
   "description" : "aeiou",
   "gps_lat" : "aeiou",
   "gps_long" : "aeiou",
-  "what_makes_it_sweet" : "aeiou",
-  "website_url" : "aeiou",
+  "tags" : "aeiou",
+  "location_polygon" : "aeiou",
   "name" : "aeiou",
   "opening_hours" : "aeiou",
-  "location_title" : "aeiou",
   "is_all_day" : true,
   "id" : "aeiou",
-  "category" : "aeiou",
+  "categories" : "aeiou",
   "start_date" : "aeiou"
 } ];
   if (Object.keys(examples).length > 0) {
@@ -79,7 +79,7 @@ exports.poiPATCH = function(args, res, next) {
    * Update a specific Point of Interest. 
    *
    * poiId String The id of the Point of Interest
-   * poi POI Point of Interest object (optional)
+   * poi Poi Point of Interest object (optional)
    * returns Success
    **/
   var examples = {};
@@ -101,7 +101,7 @@ exports.poiPOST = function(args, res, next) {
    * Add Point of Interest
    * Upload a new Point of Interest. 
    *
-   * poi POI Point of Interest object
+   * poi Poi Point of Interest object
    * returns Success
    **/
   var examples = {};
@@ -116,5 +116,38 @@ exports.poiPOST = function(args, res, next) {
   } else {
     res.end();
   }
+}
+
+exports.poiStateAllGET = function(args, res, next) {
+  /**
+   * Get POI state
+   *
+   * returns List
+   **/
+  const databaseService = require('../database/databaseService');
+    databaseService.executeQuery("SELECT * FROM poi_state", function(err, sqlResult) {
+        if (err) {
+            console.error("Error occurred", err);
+            res.end();
+        }
+
+        var result = {};
+        result['application/json'] = [];
+
+        var i = 0
+        for (i = 0; i < sqlResult.rows.length; i++) {
+            result['application/json'].push({
+                "name": sqlResult.rows[i].poi_state_name,
+                "id": sqlResult.rows[i].poi_state_id
+            })
+        }
+
+        if (Object.keys(result).length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(result[Object.keys(result)[0]] || {}, null, 2));
+        } else {
+            res.end();
+        }
+    })
 }
 
