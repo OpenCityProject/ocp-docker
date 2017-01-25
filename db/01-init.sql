@@ -634,6 +634,7 @@ $$;
 --GRANT SELECT, INSERT, UPDATE ON schedule TO regular_user;
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO admin_user;
+GRANT SELECT ON oauth_provider TO regular_user;
 GRANT SELECT ON participant_type TO regular_user;
 GRANT SELECT ON person_state TO regular_user;
 GRANT SELECT ON person_type TO regular_user;
