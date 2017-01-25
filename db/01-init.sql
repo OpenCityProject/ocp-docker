@@ -634,6 +634,11 @@ $$;
 --GRANT SELECT, INSERT, UPDATE ON schedule TO regular_user;
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO admin_user;
+GRANT SELECT ON participant_type TO regular_user;
+GRANT SELECT ON person_state TO regular_user;
+GRANT SELECT ON person_type TO regular_user;
+GRANT SELECT ON poi_state TO regular_user;
+GRANT SELECT ON recurrence_frequency TO regular_user;
 GRANT SELECT ON weekday TO regular_user;
 
 -- How to do permissions properly, if you care enough to get around to this
