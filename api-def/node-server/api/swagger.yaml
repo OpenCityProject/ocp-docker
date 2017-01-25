@@ -39,7 +39,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/POI"
+              $ref: "#/definitions/Poi"
         default:
           description: "Unexpected error"
           schema:
@@ -57,7 +57,7 @@ paths:
         description: "Point of Interest object"
         required: true
         schema:
-          $ref: "#/definitions/POI"
+          $ref: "#/definitions/Poi"
       responses:
         200:
           description: "Success"
@@ -67,7 +67,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointsOfInterest"
+      x-swagger-router-controller: "PointOfInterest"
   /poi/{poiId}:
     get:
       tags:
@@ -91,7 +91,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointsOfInterest"
+      x-swagger-router-controller: "PointOfInterest"
     delete:
       tags:
       - "Point of Interest"
@@ -113,7 +113,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointsOfInterest"
+      x-swagger-router-controller: "PointOfInterest"
     patch:
       tags:
       - "Point of Interest"
@@ -131,7 +131,7 @@ paths:
         description: "Point of Interest object"
         required: false
         schema:
-          $ref: "#/definitions/POI"
+          $ref: "#/definitions/Poi"
       responses:
         200:
           description: "Success"
@@ -141,7 +141,45 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointsOfInterest"
+      x-swagger-router-controller: "PointOfInterest"
+  /poi-state:
+    get:
+      tags:
+      - "Point of Interest"
+      summary: "Get POI state"
+      operationId: "poiStateAllGET"
+      parameters: []
+      responses:
+        200:
+          description: "An array of POI states"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PoiState"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
+  /recurrence-frequency:
+    get:
+      tags:
+      - "Recurrence"
+      summary: "Get Recurrence Frequency"
+      operationId: "recurrenceFrequencyAllGET"
+      parameters: []
+      responses:
+        200:
+          description: "An array of Recurrence Frequencies"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/RecurrenceFrequency"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Recurrence"
   /users:
     get:
       tags:
@@ -161,7 +199,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Users"
+      x-swagger-router-controller: "User"
     post:
       tags:
       - "User"
@@ -184,7 +222,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Users"
+      x-swagger-router-controller: "User"
   /users/{userId}:
     get:
       tags:
@@ -207,7 +245,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Users"
+      x-swagger-router-controller: "User"
     delete:
       tags:
       - "User"
@@ -229,7 +267,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Users"
+      x-swagger-router-controller: "User"
     patch:
       tags:
       - "User"
@@ -257,17 +295,55 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Users"
+      x-swagger-router-controller: "User"
+  /user-type:
+    get:
+      tags:
+      - "User"
+      summary: "Get User type"
+      operationId: "userTypeAllGET"
+      parameters: []
+      responses:
+        200:
+          description: "An array of User types"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UserType"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "User"
+  /user-state:
+    get:
+      tags:
+      - "User"
+      summary: "Get User state"
+      operationId: "userStateAllGET"
+      parameters: []
+      responses:
+        200:
+          description: "An array of User states"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/UserState"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "User"
   /weekday:
     get:
       tags:
-      - "Weekday"
-      summary: "Weekday, e.g. Monday, Tuesday, and so on..."
+      - "Recurrence"
+      summary: "Get Weekday"
       operationId: "weekdayAllGET"
       parameters: []
       responses:
         200:
-          description: "An array of Weekday"
+          description: "An array of Weekdays"
           schema:
             type: "array"
             items:
@@ -276,24 +352,9 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "Weekday"
+      x-swagger-router-controller: "Recurrence"
 definitions:
-  User:
-    type: "object"
-    properties:
-      userId:
-        type: "string"
-        description: "Unique identifier representing a user"
-      username:
-        type: "string"
-        description: "Unique identifier representing a user"
-      name:
-        type: "string"
-        description: "The name of the user"
-      email:
-        type: "string"
-        description: "The email address of the user"
-  POI:
+  Poi:
     type: "object"
     properties:
       id:
@@ -338,13 +399,70 @@ definitions:
       tags:
         type: "string"
         description: "A list of tags for the Point of Interest, deliminated by commas"
+  PoiState:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        description: "POI state ID."
+      name:
+        type: "string"
+        description: "State of a POI, i.e. Approved, Declined, Deleted, Submitted."
+  RecurrenceFrequency:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        description: "Recurrence Frequency ID"
+      name:
+        type: "string"
+        description: "Name of the Recurrence Frequency, i.e. Daily, Weekly, Monthly,\
+          \ Yearly."
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Unique identifier representing a user"
+      username:
+        type: "string"
+        description: "Unique identifier representing a user"
+      name:
+        type: "string"
+        description: "The name of the user"
+      email:
+        type: "string"
+        description: "The email address of the user"
+  UserType:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        description: "User type ID."
+      name:
+        type: "string"
+        description: "Type of a user, i.e. Admin, Moderator, End User."
+  UserState:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+        description: "User state ID."
+      name:
+        type: "string"
+        description: "State of a user, i.e. Active, Deleted, Disabled, EmailNotVerified,\
+          \ Locked."
   Weekday:
     type: "object"
     properties:
       id:
         type: "integer"
         format: "int32"
-        description: "Weekday ID"
+        description: "Weekday ID."
       name:
         type: "string"
         description: "Name of the weekday, e.g. Monday, Tuesday and so on..."

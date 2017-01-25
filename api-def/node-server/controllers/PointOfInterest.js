@@ -23,3 +23,7 @@ module.exports.poiPATCH = function poiPATCH (req, res, next) {
 module.exports.poiPOST = function poiPOST (req, res, next) {
   PointOfInterest.poiPOST(req.swagger.params, res, next);
 };
+
+module.exports.poiStateAllGET = function poiStateAllGET (req, res, next) {
+  PointOfInterest.poiStateAllGET(req.swagger.params, res, next);
+};
