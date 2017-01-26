@@ -1,4 +1,5 @@
 'use strict';
+const pgdb = require('../model/pgdb')
 
 exports.poiAllGET = function(args, res, next) {
   /**
@@ -9,28 +10,43 @@ exports.poiAllGET = function(args, res, next) {
    * long Double Longitude component of location.
    * returns List
    **/
-  var examples = {};
-  examples['application/json'] = [ {
-  "end_date" : "aeiou",
-  "poi_url" : "aeiou",
-  "description" : "aeiou",
-  "gps_lat" : "aeiou",
-  "gps_long" : "aeiou",
-  "tags" : "aeiou",
-  "location_polygon" : "aeiou",
-  "name" : "aeiou",
-  "opening_hours" : "aeiou",
-  "is_all_day" : true,
-  "id" : "aeiou",
-  "categories" : "aeiou",
-  "start_date" : "aeiou"
-} ];
-  if (Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  } else {
-    res.end();
-  }
+//   var examples = {};
+//   examples['application/json'] = [ {
+//   "end_date" : "aeiou",
+//   "poi_url" : "aeiou",
+//   "description" : "aeiou",
+//   "gps_lat" : "aeiou",
+//   "gps_long" : "aeiou",
+//   "tags" : "aeiou",
+//   "location_polygon" : "aeiou",
+//   "name" : "aeiou",
+//   "opening_hours" : "aeiou",
+//   "is_all_day" : true,
+//   "id" : "aeiou",
+//   "categories" : "aeiou",
+//   "start_date" : "aeiou"
+// } ];
+
+  const query = pgdb.getPoi()
+  query.then(pois=>{
+    console.log("number of pois: " + pois.length);
+    var poiResponse = [];
+    pois.forEach((poi) => {
+      console.log('poi', poi)
+      poiResponse.push(poi);
+    });
+    res.end(JSON.stringify(poiResponse));
+  }).catch(err=>{
+    console.error('Error', err);
+    res.end(JSON.stringify(err));
+  })
+
+  // if (Object.keys(examples).length > 0) {
+  //   res.setHeader('Content-Type', 'application/json');
+  //   res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+  // } else {
+  //   res.end();
+  // }
 }
 
 exports.poiDELETE = function(args, res, next) {
