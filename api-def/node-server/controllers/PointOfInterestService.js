@@ -121,9 +121,9 @@ exports.poiPOST = function(args, res, next) {
    * returns Success
    **/
   var poiDTO = args.poi.value;
-  var poi = { poi_id:  poiDTO.id, poi_name: poiDTO.name, location_title: "unknown", location_polygon: poiDTO.location_polygon, recurrence_rule_id: 0,
+  var poi = { poi_id:  poiDTO.id, poi_name: poiDTO.name, location_title: "unknown", location_polygon: poiDTO.location_polygon, recurrence_rule_id: 12345,
               start_date: poiDTO.start_date, end_date: poiDTO.end_date, poi_url: poiDTO.poi_url, poi_description: poiDTO.description,
-                poi_state_id: 0, who_added_patron_id: "A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11" }
+                poi_state_id: 0, who_added_patron_id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11" }
   const query = pgdb.insertPoi(poi);
   query.then(response=>{
     console.log(response);

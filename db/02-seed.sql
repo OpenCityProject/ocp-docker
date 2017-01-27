@@ -43,6 +43,9 @@ INSERT INTO public.weekday(weekday_id, weekday_name) VALUES
     (6, 'Saturday'),
     (7, 'Sunday');
 
+INSERT INTO public.recurrence_rule(recurrence_rule_id, first_day_of_the_week, recurrence_frequency_id, interval) VALUES
+    (12345, 1, 1, 1),
+    (12346, 2, 2, 2);
 
  
 
