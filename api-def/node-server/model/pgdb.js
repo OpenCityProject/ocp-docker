@@ -19,4 +19,7 @@ module.exports = {
   getPoiById(poiId){
     return knex.select().from('poi').where('poi_id', poiId);
   },
+  updatePoi(poiId, poi){
+    return knex('poi').where('poi_id', poiId).update(poi);
+  }
 }
