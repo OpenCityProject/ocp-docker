@@ -12,5 +12,11 @@ module.exports = {
     console.log("poi is: ")
     console.log(poi);
     return knex('poi').insert(poi);
-  }
+  },
+  deletePoi(poiId) {
+    return knex('poi').where('poi_id', poiId).del();
+  },
+  getPoiById(poiId){
+    return knex.select().from('poi').where('poi_id', poiId);
+  },
 }
