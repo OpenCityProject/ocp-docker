@@ -123,7 +123,7 @@ exports.poiPOST = function(args, res, next) {
   var poiDTO = args.poi.value;
   var poi = { poi_id:  poiDTO.id, poi_name: poiDTO.name, location_title: "unknown", location_polygon: poiDTO.location_polygon, recurrence_rule_id: 12345,
               start_date: poiDTO.start_date, end_date: poiDTO.end_date, poi_url: poiDTO.poi_url, poi_description: poiDTO.description,
-                poi_state_id: 0, who_added_patron_id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11" }
+                poi_state_id: 1, who_added_patron_id: "009b4c56-e2c9-11e6-940b-6f54577f0d9d" }
   const query = pgdb.insertPoi(poi);
   query.then(response=>{
     console.log(response);
