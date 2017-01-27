@@ -7,5 +7,10 @@ module.exports = {
   },
   getPoi(){
     return knex.select().from('poi');
+  },
+  insertPoi(poi) {
+    console.log("poi is: ")
+    console.log(poi);
+    return knex('poi').insert(poi);
   }
 }

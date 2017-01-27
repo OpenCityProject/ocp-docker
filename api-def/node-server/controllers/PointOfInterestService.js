@@ -120,18 +120,31 @@ exports.poiPOST = function(args, res, next) {
    * poi Poi Point of Interest object
    * returns Success
    **/
-  var examples = {};
-  examples['application/json'] = {
-  "code" : 123,
-  "message" : "aeiou",
-  "object" : "{}"
-};
-  if (Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  } else {
-    res.end();
-  }
+  var poiDTO = args.poi.value;
+  var poi = { poi_id:  poiDTO.id, poi_name: poiDTO.name, location_title: "unknown", location_polygon: poiDTO.location_polygon, recurrence_rule_id: 0,
+              start_date: poiDTO.start_date, end_date: poiDTO.end_date, poi_url: poiDTO.poi_url, poi_description: poiDTO.description,
+                poi_state_id: 0, who_added_patron_id: "A0EEBC99-9C0B-4EF8-BB6D-6BB9BD380A11" }
+  const query = pgdb.insertPoi(poi);
+  query.then(response=>{
+    console.log(response);
+    res.end(JSON.stringify(response));
+  }).catch(err=>{
+    console.error('Error', err);
+    res.end(JSON.stringify(err));
+  })
+
+  // var examples = {};
+  // examples['application/json'] = {
+  //   "code" : 123,
+  //   "message" : "aeiou",
+  //   "object" : "{}"
+  // };
+  // if (Object.keys(examples).length > 0) {
+  //   res.setHeader('Content-Type', 'application/json');
+  //   res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+  // } else {
+  //   res.end();
+  // }
 }
 
 exports.poiStateAllGET = function(args, res, next) {
