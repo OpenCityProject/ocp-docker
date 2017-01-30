@@ -14,8 +14,8 @@ services:
       - back-tier
     environment:
       - PORT=80 # Port for Node.js to listen on
-      - POSTGRES_USER=regular_user
-      - POSTGRES_PASSWORD=regular_password
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker_postgres
       - POSTGRES_ADMIN_USER=admin_user
       - POSTGRES_ADMIN_PASSWORD=admin_password
       - POSTGRES_SERVER=localhost

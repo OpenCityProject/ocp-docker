@@ -43,6 +43,5 @@ INSERT INTO public.weekday(weekday_id, weekday_name) VALUES
     (6, 'Saturday'),
     (7, 'Sunday');
 
-
  
 
