@@ -1,4 +1,5 @@
 node_modules
 api/public/css/*.css
-
+.DS_Store
 *.architect~
+api
