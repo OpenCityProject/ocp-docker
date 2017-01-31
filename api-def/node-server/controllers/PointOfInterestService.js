@@ -1,5 +1,4 @@
 'use strict';
-const pgdb = require('../model/pgdb');
 const poiModel = require('../model/poi');
 
 exports.poiAllGET = function(args, res, next) {
@@ -30,7 +29,7 @@ exports.poiDELETE = function(args, res, next) {
    * returns Success
    **/
   console.log(args.poiId.value);
-  const query = pgdb.deletePoi(args.poiId.value)
+  const query = poiModel.deletePoi(args.poiId.value)
   query.then(response => {
     console.log(response);
     res.end(JSON.stringify(response));
@@ -49,7 +48,7 @@ exports.poiGET = function(args, res, next) {
    * returns Object
    **/
   console.log(args.poiId.value);
-  const query = pgdb.getPoiById(args.poiId.value)
+  const query = poiModel.getPoiById(args.poiId.value)
   query.then(response => {
     console.log(response);
     res.end(JSON.stringify(response));
@@ -83,7 +82,7 @@ exports.poiPATCH = function(args, res, next) {
     poi_state_id: 1,
     who_added_patron_id: "009b4c56-e2c9-11e6-940b-6f54577f0d9d"
   }
-  const query = pgdb.updatePoi(args.poiId.value, poi);
+  const query = poiModel.updatePoi(args.poiId.value, poi);
   query.then(response => {
     console.log(response);
     res.end(JSON.stringify(response));
@@ -115,7 +114,7 @@ exports.poiPOST = function(args, res, next) {
     poi_state_id: 1,
     who_added_patron_id: "009b4c56-e2c9-11e6-940b-6f54577f0d9d"
   }
-  const query = pgdb.insertPoi(poi);
+  const query = poiModel.insertPoi(poi);
   query.then(response => {
     console.log(response);
     res.end(JSON.stringify(response));
