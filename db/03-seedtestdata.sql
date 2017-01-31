@@ -1,3 +1,10 @@
+INSERT INTO public.category (category_name) VALUES 
+	('Amusement Park'),
+	('Kids'),
+    ('Natural'),
+    ('Sports'),
+    ('Social Event');
+
 INSERT INTO public.person (person_name, phone_number, email, person_type_id, oauth_provider_id, oauth_token, oauth_token_expiration, person_state_id) VALUES 
     ('Eddie', '01234567', 'eddie@example.com', 1, NULL, 'Abcdefghijklmno', '9999-9-9', 1),
 	('Elliot', '02234567', 'elliot@example.com', 1, NULL, 'Bbcdefghijklmno', '9999-9-9', 1);
@@ -6,8 +13,15 @@ INSERT INTO public.recurrence_rule (first_day_of_the_week, recurrence_frequency_
     (1, 1, 1),
     (1, 2, 2);
 
+INSERT INTO public.tag (tag_name) VALUES 
+	('TheColorRunNZ'),
+	('Adidas3on3'),
+    ('Spark'),
+    ('LanternFestival2017');
+
 DO $$
 DECLARE who_added_person_id UUID;
+DECLARE new_poi_id UUID;
 BEGIN
 	who_added_person_id := (SELECT person_id FROM person WHERE person_name = 'Eddie');
 	INSERT INTO public.poi (
@@ -59,5 +73,15 @@ BEGIN
 			1,
 			who_added_person_id
 		);
+
+	new_poi_id := (SELECT poi_id FROM poi WHERE poi_name = '3 on 3 street basketball');
+
+	INSERT INTO public.poi_category (poi_id, category_id) VALUES 
+		(new_poi_id, 4),
+		(new_poi_id, 5);
+
+	INSERT INTO public.poi_tag (poi_id, tag_id) VALUES 
+		(new_poi_id, 3),
+		(new_poi_id, 2);
 END $$;
 
