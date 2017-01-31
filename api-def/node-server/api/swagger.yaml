@@ -33,6 +33,13 @@ paths:
         required: true
         type: "number"
         format: "double"
+      - name: "radiusInMetre"
+        in: "query"
+        description: "Search radius in metre, default to 5000 metre."
+        required: false
+        default: 5000
+        type: "integer"
+        format: "int32"
       responses:
         200:
           description: "An array of Points of Interest"
