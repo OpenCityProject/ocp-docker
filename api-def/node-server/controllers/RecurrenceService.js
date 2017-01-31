@@ -14,7 +14,7 @@ exports.recurrenceFrequencyAllGET = function(args, res, next) {
     res.end(JSON.stringify(response || {}, null, 2));
   }).catch(err => {
     console.error('Error', err);
-    res.status(503).end(JSON.stringify(err));
+    res.end(JSON.stringify(err));
   })
 }
 
@@ -30,6 +30,6 @@ exports.weekdayAllGET = function(args, res, next) {
     res.end(JSON.stringify(response || {}, null, 2));
   }).catch(err => {
     console.error('Error', err);
-    res.status(503).end(JSON.stringify(err));
+    res.end(JSON.stringify(err));
   })
 }
