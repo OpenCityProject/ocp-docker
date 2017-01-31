@@ -346,15 +346,14 @@ CREATE TABLE IF NOT EXISTS poi (
                 recurrence_rule_id BIGINT NOT NULL,
                 start_date DATE,
                 end_date DATE,
-                start_date_1 BOOLEAN,
                 organiser_participant_id BIGINT,
                 poi_url VARCHAR(2000),
                 poi_description VARCHAR(2000),
                 poi_state_id SMALLINT NOT NULL,
                 when_added TIMESTAMP DEFAULT NOW() NOT NULL,
-                who_added_patron_id UUID NOT NULL,
+                who_added_person_id UUID NOT NULL,
                 when_updated TIMESTAMP,
-                who_updated_patron_id UUID,
+                who_updated_person_id UUID,
                 CONSTRAINT poi_id PRIMARY KEY (poi_id)
 );
 COMMENT ON TABLE poi IS 'Point of Interest';
@@ -527,14 +526,14 @@ ON UPDATE CASCADE
 NOT DEFERRABLE;
 
 ALTER TABLE poi ADD CONSTRAINT person_poi_fk
-FOREIGN KEY (who_updated_patron_id)
+FOREIGN KEY (who_updated_person_id)
 REFERENCES person (person_id)
 ON DELETE NO ACTION
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
 ALTER TABLE poi ADD CONSTRAINT person_poi_fk1
-FOREIGN KEY (who_added_patron_id)
+FOREIGN KEY (who_added_person_id)
 REFERENCES person (person_id)
 ON DELETE NO ACTION
 ON UPDATE CASCADE
