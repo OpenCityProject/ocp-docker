@@ -11,7 +11,7 @@ exports.poiAllGET = function(args, res, next) {
    * long Double Longitude component of location.
    * returns List
    **/
-  const query = poiModel.getPoi(args.lat.value, args.long.value);
+  const query = poiModel.getPoi(args.lat.value, args.long.value, args.radiusInMetre.value || 2000);
   query.then(response => {
     console.log("Number of POIs: " + response.length);
     res.end(JSON.stringify(response || {}, null, 2));
