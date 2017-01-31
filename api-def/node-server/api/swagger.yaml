@@ -380,6 +380,10 @@ definitions:
       location_polygon:
         type: "string"
         description: "The location polygon for the Point of Interest"
+      distance_in_metre:
+        type: "integer"
+        format: "int32"
+        description: "Distance from a given location, in metre"
       start_date:
         type: "string"
         description: "The Start Date for the Point of Interest"

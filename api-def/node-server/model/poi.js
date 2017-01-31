@@ -7,12 +7,18 @@ module.exports = {
     },
     getPoi(lat, long, radiusInMetre) {
         return knex
-            .select(knex.raw("\
+            .select(knex.raw(`\
 				poi.poi_id AS id,\
 				poi_name AS name,\
 				location_gps_coordinate[0] AS gps_lat,\
 				location_gps_coordinate[1] AS gps_long,\
 				location_polygon,\
+				CASE\
+				    WHEN location_gps_coordinate IS NOT NULL THEN\
+				        ST_Distance(ST_GeogFromText(ST_AsText(location_gps_coordinate::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'))\
+				    WHEN location_polygon IS NOT NULL THEN\
+				        ST_Distance(ST_GeogFromText(ST_AsText(location_polygon::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'))\
+				END AS distance_in_metre,\
 				start_date,\
 				end_date,\
 				NULL AS opening_hours,\
@@ -20,13 +26,21 @@ module.exports = {
 				poi_url,\
 				poi_description AS description,\
 				string_agg(category.category_name, ',') AS categories,\
-				string_agg(tag.tag_name, ',') AS tags"))
+				string_agg(tag.tag_name, ',') AS tags`))
             .from('poi')
             .leftJoin('poi_category', 'poi_category.poi_id', 'poi.poi_id')
             .leftJoin('poi_tag', 'poi_tag.poi_id', 'poi.poi_id')
             .leftJoin('category', 'category.category_id', 'poi_category.category_id')
             .leftJoin('tag', 'tag.tag_id', 'poi_tag.tag_id')
-            //.where() // TODO: Look up POI by GPS coordinate + Radius.
+            .where(knex.raw(`\
+                (\
+                    location_gps_coordinate IS NOT NULL\
+                    AND ST_DWithin(ST_GeogFromText(ST_AsText(location_gps_coordinate::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'), ${radiusInMetre})\
+                )\
+                OR (\
+                    location_polygon IS NOT NULL\
+                    AND ST_DWithin(ST_GeogFromText(ST_AsText(location_polygon::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'), ${radiusInMetre})\
+                )`))
             .groupBy('poi.poi_id');
     },
     insertPoi(poi) {
