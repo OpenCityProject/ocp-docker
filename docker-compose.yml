@@ -18,7 +18,7 @@ services:
       - POSTGRES_PASSWORD=docker_postgres
       - POSTGRES_ADMIN_USER=admin_user
       - POSTGRES_ADMIN_PASSWORD=admin_password
-      - POSTGRES_SERVER=localhost
+      - POSTGRES_SERVER=db
       - POSTGRES_PORT=5432
       - POSTGRES_DB=ocp
       - POSTGRES_MAX_CLIENT=10
