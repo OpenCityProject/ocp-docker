@@ -274,7 +274,8 @@ CREATE TABLE IF NOT EXISTS person (
                 last_login DATE,
                 when_added TIMESTAMP DEFAULT NOW() NOT NULL,
                 when_updated TIMESTAMP,
-                CONSTRAINT person_id PRIMARY KEY (person_id)
+                CONSTRAINT person_id PRIMARY KEY (person_id), 
+                CONSTRAINT email UNIQUE (email)
 );
 COMMENT ON TABLE person IS 'End users of the system, who can add POI, follow, edit etc.
 This table is not called "User" as it is a reserved keyword.';
@@ -304,7 +305,8 @@ CREATE SEQUENCE tag_tag_id_seq;
 CREATE TABLE IF NOT EXISTS tag (
                 tag_id BIGINT NOT NULL DEFAULT nextval('tag_tag_id_seq'),
                 tag_name VARCHAR(200) NOT NULL,
-                CONSTRAINT tag_id PRIMARY KEY (tag_id)
+                CONSTRAINT tag_id PRIMARY KEY (tag_id), 
+                CONSTRAINT tag_name UNIQUE (tag_name)
 );
 
 
@@ -315,7 +317,8 @@ CREATE SEQUENCE category_category_id_seq;
 CREATE TABLE IF NOT EXISTS category (
                 category_id BIGINT NOT NULL DEFAULT nextval('category_category_id_seq'),
                 category_name VARCHAR(200) NOT NULL,
-                CONSTRAINT category_id PRIMARY KEY (category_id)
+                CONSTRAINT category_id PRIMARY KEY (category_id), 
+                CONSTRAINT category_name UNIQUE (category_name)
 );
 COMMENT ON TABLE category IS 'Connect with others
 Savour the moment
@@ -633,6 +636,9 @@ $$;
 --GRANT SELECT, INSERT, UPDATE ON schedule TO regular_user;
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO admin_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public to admin_user;
+
+GRANT INSERT, SELECT ON category TO regular_user;
 GRANT SELECT ON oauth_provider TO regular_user;
 GRANT SELECT ON participant_type TO regular_user;
 GRANT SELECT ON person_state TO regular_user;
@@ -640,7 +646,10 @@ GRANT SELECT ON person_type TO regular_user;
 GRANT SELECT ON poi_state TO regular_user;
 GRANT SELECT ON recurrence_frequency TO regular_user;
 GRANT SELECT ON person TO regular_user;
+GRANT INSERT, SELECT ON tag TO regular_user;
 GRANT SELECT ON weekday TO regular_user;
+GRANT USAGE ON ALL SEQUENCES IN SCHEMA public to regular_user;
+
 
 -- How to do permissions properly, if you care enough to get around to this
 ----ACCESS BD
