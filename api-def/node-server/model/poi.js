@@ -5,6 +5,9 @@ module.exports = {
     test() {
         knex.select(knex.raw(1))
     },
+    getCategory() {
+        return knex.select('category_id AS id', 'category_name AS name').from('category');
+    },
     getPoi(lat, long, radiusInMetre) {
         return knex
             .select(knex.raw(`\
@@ -59,5 +62,8 @@ module.exports = {
     },
     getPoiState() {
         return knex.select('poi_state_id AS id', 'poi_state_name AS name').from('poi_state');
+    },
+    getTag() {
+        return knex.select('tag_id AS id', 'tag_name AS name').from('tag');
     }
 }

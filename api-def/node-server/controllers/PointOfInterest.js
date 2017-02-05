@@ -4,6 +4,10 @@ var url = require('url');
 
 var PointOfInterest = require('./PointOfInterestService');
 
+module.exports.categoryGET = function categoryGET (req, res, next) {
+  PointOfInterest.categoryGET(req.swagger.params, res, next);
+};
+
 module.exports.poiAllGET = function poiAllGET (req, res, next) {
   PointOfInterest.poiAllGET(req.swagger.params, res, next);
 };
@@ -26,4 +30,8 @@ module.exports.poiPOST = function poiPOST (req, res, next) {
 
 module.exports.poiStateAllGET = function poiStateAllGET (req, res, next) {
   PointOfInterest.poiStateAllGET(req.swagger.params, res, next);
+};
+
+module.exports.tagGET = function tagGET (req, res, next) {
+  PointOfInterest.tagGET(req.swagger.params, res, next);
 };
