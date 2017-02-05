@@ -227,6 +227,77 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "PointOfInterest"
+    post:
+      tags:
+      - "Point of Interest"
+      summary: "Add a Tag"
+      operationId: "tagPOST"
+      parameters:
+      - in: "body"
+        name: "name"
+        description: "Value of the tag"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
+  /tag/{id}:
+    delete:
+      tags:
+      - "Point of Interest"
+      summary: "Delete a Tag by ID"
+      operationId: "tagIdDELETE"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The ID of the Tag"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
+    patch:
+      tags:
+      - "Point of Interest"
+      summary: "Update a Tag by ID"
+      operationId: "tagIdPATCH"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The ID of the Tag"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "name"
+        description: "Value of the tag"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
   /users:
     get:
       tags:

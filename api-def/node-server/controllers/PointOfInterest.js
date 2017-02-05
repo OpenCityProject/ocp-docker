@@ -35,3 +35,15 @@ module.exports.poiStateAllGET = function poiStateAllGET (req, res, next) {
 module.exports.tagGET = function tagGET (req, res, next) {
   PointOfInterest.tagGET(req.swagger.params, res, next);
 };
+
+module.exports.tagIdDELETE = function tagIdDELETE (req, res, next) {
+  PointOfInterest.tagIdDELETE(req.swagger.params, res, next);
+};
+
+module.exports.tagIdPATCH = function tagIdPATCH (req, res, next) {
+  PointOfInterest.tagIdPATCH(req.swagger.params, res, next);
+};
+
+module.exports.tagPOST = function tagPOST (req, res, next) {
+  PointOfInterest.tagPOST(req.swagger.params, res, next);
+};

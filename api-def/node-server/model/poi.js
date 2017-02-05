@@ -5,8 +5,21 @@ module.exports = {
     test() {
         knex.select(knex.raw(1))
     },
+    deleteCategory(id) {
+        return knex('category').where('category_id', id).del();
+    },
+    insertCategory(name) {
+        return knex('category').insert({
+            category_name: name
+        });
+    },
     getCategory() {
         return knex.select('category_id AS id', 'category_name AS name').from('category');
+    },
+    updateCategory(id, name) {
+        return knex('category').where('category_id', id).update({
+            category_name: name
+        });
     },
     getPoi(lat, long, radiusInMetre) {
         return knex
@@ -63,7 +76,20 @@ module.exports = {
     getPoiState() {
         return knex.select('poi_state_id AS id', 'poi_state_name AS name').from('poi_state');
     },
+    deleteTag(id) {
+        return knex('tag').where('tag_id', id).del();
+    },
+    insertTag(name) {
+        return knex('tag').insert({
+            tag_name: name
+        });
+    },
     getTag() {
         return knex.select('tag_id AS id', 'tag_name AS name').from('tag');
+    },
+    updateTag(id, name) {
+        return knex('tag').where('tag_id', id).update({
+            tag_name: name
+        });
     }
 }
