@@ -18,6 +18,61 @@ exports.categoryGET = function(args, res, next) {
     })
 }
 
+exports.categoryIdDELETE = function(args, res, next) {
+  /**
+   * Delete a Category by ID
+   *
+   * id String The ID of the Category
+   * returns Success
+   **/
+  console.log(`categoryIdDELETE id: ${args.id.value}`);
+    const query = poiModel.deleteCategory(args.id.value);
+    query.then(response => {
+        console.log('categoryIdDELETE response:', response);
+        res.end(JSON.stringify(response || {}, null, 2));
+    }).catch(err => {
+        console.error('Error', err);
+        res.end(JSON.stringify(err));
+    })
+}
+
+exports.categoryIdPATCH = function(args, res, next) {
+  /**
+   * Update a Category by ID
+   *
+   * id String The ID of the Category
+   * name String Value of the category
+   * returns Success
+   **/
+  console.log(`categoryIdPATCH id: ${args.id.value}, name: ${args.name.value}`);
+    const query = poiModel.updateCategory(args.id.value, args.name.value);
+    query.then(response => {
+        console.log('categoryIdPATCH response:', response);
+        res.end(JSON.stringify(response || {}, null, 2));
+    }).catch(err => {
+        console.error('Error', err);
+        res.end(JSON.stringify(err));
+    })
+}
+
+exports.categoryPOST = function(args, res, next) {
+  /**
+   * Add a Category
+   *
+   * name String Value of the category
+   * returns Success
+   **/
+  console.log(`categoryPOST name: ${args.name.value}`);
+    const query = poiModel.insertCategory(args.name.value);
+    query.then(response => {
+        console.log('categoryPOST response:', response);
+        res.end(JSON.stringify(response || {}, null, 2));
+    }).catch(err => {
+        console.error('Error', err);
+        res.end(JSON.stringify(err));
+    })
+}
+
 exports.poiAllGET = function(args, res, next) {
     /**
      * Get Points of Interest

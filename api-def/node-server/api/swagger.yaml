@@ -33,6 +33,77 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "PointOfInterest"
+    post:
+      tags:
+      - "Point of Interest"
+      summary: "Add a Category"
+      operationId: "categoryPOST"
+      parameters:
+      - in: "body"
+        name: "name"
+        description: "Value of the category"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
+  /category/{id}:
+    delete:
+      tags:
+      - "Point of Interest"
+      summary: "Delete a Category by ID"
+      operationId: "categoryIdDELETE"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The ID of the Category"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
+    patch:
+      tags:
+      - "Point of Interest"
+      summary: "Update a Category by ID"
+      operationId: "categoryIdPATCH"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The ID of the Category"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "name"
+        description: "Value of the category"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
   /poi:
     get:
       tags:
