@@ -32,7 +32,7 @@ Of note, the database is held by docker, you may want to setup a replication to 
 
 ```bash
 docker-compose up # -d for daemon, --build if you make a change
-# remove
+# Remove database data
 docker-compose down
 docker volume rm ocpdocker_db-data
 
