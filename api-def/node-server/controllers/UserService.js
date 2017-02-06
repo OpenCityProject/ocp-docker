@@ -20,6 +20,7 @@ exports.userDELETE = function(args, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
   } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end();
   }
 }
@@ -42,6 +43,7 @@ exports.userGET = function(args, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
   } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end();
   }
 }
@@ -65,6 +67,7 @@ exports.userPATCH = function(args, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
   } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end();
   }
 }
@@ -87,6 +90,7 @@ exports.userPOST = function(args, res, next) {
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
   } else {
+    res.writeHead(404, {'Content-Type': 'text/plain'});
     res.end();
   }
 }
@@ -103,7 +107,8 @@ exports.userStateAllGET = function(args, res, next) {
     res.end(JSON.stringify(response || {}, null, 2));
   }).catch(err => {
     console.error('Error', err);
-    res.status(503).end(JSON.stringify(err));
+    res.writeHead(503, {'Content-Type': 'text/plain'});
+    res.end(JSON.stringify(err));
   })
 }
 
@@ -119,7 +124,8 @@ exports.userTypeAllGET = function(args, res, next) {
     res.end(JSON.stringify(response || {}, null, 2));
   }).catch(err => {
     console.error('Error', err);
-    res.status(503).end(JSON.stringify(err));
+    res.writeHead(503, {'Content-Type': 'text/plain'});
+    res.end(JSON.stringify(err));
   })
 }
 
@@ -144,7 +150,8 @@ exports.usersAllGET = function(args, res, next) {
           ", function(err, sqlResult) {
     if (err) {
       console.error("Error occurred", err);
-      res.end();
+      res.writeHead(503, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify(err));
     }
 
     var result = {};
@@ -170,7 +177,8 @@ exports.usersAllGET = function(args, res, next) {
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify(result[Object.keys(result)[0]] || {}, null, 2));
     } else {
-      res.end();
+      res.writeHead(503, {'Content-Type': 'text/plain'});
+      res.end(JSON.stringify(err));
     }
   })
 }

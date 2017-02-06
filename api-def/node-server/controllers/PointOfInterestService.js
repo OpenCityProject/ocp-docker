@@ -14,6 +14,7 @@ exports.categoryGET = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -32,6 +33,7 @@ exports.categoryIdDELETE = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -51,6 +53,7 @@ exports.categoryIdPATCH = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -69,6 +72,7 @@ exports.categoryPOST = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -88,6 +92,7 @@ exports.poiAllGET = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -107,6 +112,7 @@ exports.poiDELETE = function(args, res, next) {
         res.end(JSON.stringify(response));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -126,6 +132,7 @@ exports.poiGET = function(args, res, next) {
         res.end(JSON.stringify(response));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -160,6 +167,7 @@ exports.poiPATCH = function(args, res, next) {
         res.end(JSON.stringify(response));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -192,6 +200,7 @@ exports.poiPOST = function(args, res, next) {
         res.end(JSON.stringify(response));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -208,6 +217,7 @@ exports.poiStateAllGET = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -225,6 +235,7 @@ exports.tagGET = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -243,6 +254,7 @@ exports.tagIdDELETE = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -262,6 +274,7 @@ exports.tagIdPATCH = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }
@@ -280,6 +293,7 @@ exports.tagPOST = function(args, res, next) {
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
 }

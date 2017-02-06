@@ -166,6 +166,30 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "PointOfInterest"
+  /login:
+    post:
+      tags:
+      - "Point of Interest"
+      summary: "Login"
+      description: "Login.\n"
+      operationId: "loginPOST"
+      parameters:
+      - in: "body"
+        name: "auth"
+        description: "Auth object"
+        required: true
+        schema:
+          $ref: "#/definitions/Auth"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "Login"
   /poi/{poiId}:
     get:
       tags:
@@ -543,6 +567,13 @@ paths:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "Recurrence"
 definitions:
+  Auth:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
   Category:
     type: "object"
     properties:
