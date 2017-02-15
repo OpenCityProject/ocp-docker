@@ -10,22 +10,26 @@ docker-compose up
 
 API
 ---
-
-There is a basic api using express in api folder
-
-There is an API spec for swagger in the api-def folder. Go to http://editor.swagger.io/ and paste it in to the editor.
-From there you can generate a server and a client
+Uses Swagger  
+Currently a single endpoint - POI  
+Contains get(all), put, post, and delete only  
+Can test using curl or postman  
 
 Database
 --------
-A quick initial sketch of the database layout, needs to be revamped
-
-![DB Diagram](db/db-design.png "OCP Database design")
-
-Also useful resource for auditing:
-
-* http://stackoverflow.com/questions/1523446/is-it-possible-to-get-a-history-of-queries-made-in-postgres
-
+Currently a single table. 
+  
+POI  
+poi_id, poi_name, person_name, reason, address, opening_hours, category  
+  
+See init.sql, this also creates 3 entries for testing in the poi table   
+  
+Not sure why, but docker-compose up doesn't seem to call the init.sql script.  
+So for testing, copy and paste the init.sql code manually to initialise the database in the db docker container. 
+`docker exec -it [id of db container] bash`  
+`psql --username=postgres`  
+`\connect ocp`  
+  
 Docker Compose
 --------------
 Of note, the database is held by docker, you may want to setup a replication to somewhere else

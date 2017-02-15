@@ -7,7 +7,7 @@ var PointsOfInterest = require('./PointsOfInterestService');
 
 
 module.exports.poiGET = function poiGET (req, res, next) {
-  PointsOfInterest.poiGET(req.swagger.params, res, next);
+  PointsOfInterest.poiAllGET(req.swagger.params, res, next);
 };
 
 module.exports.poiPOST = function poiPOST (req, res, next) {
@@ -15,9 +15,9 @@ module.exports.poiPOST = function poiPOST (req, res, next) {
 };
 
 module.exports.poiPoiIdDELETE = function poiPoiIdDELETE (req, res, next) {
-  PointsOfInterest.poiPoiIdDELETE(req.swagger.params, res, next);
+  PointsOfInterest.poiDELETE(req.swagger.params, res, next);
 };
 
 module.exports.poiPoiIdPATCH = function poiPoiIdPATCH (req, res, next) {
-  PointsOfInterest.poiPoiIdPATCH(req.swagger.params, res, next);
+  PointsOfInterest.poiPATCH(req.swagger.params, res, next);
 };

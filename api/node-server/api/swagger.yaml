@@ -1,0 +1,151 @@
+---
+swagger: "2.0"
+info:
+  description: "Interact with your city with the Open City Project API"
+  version: "1.0.0"
+  title: "Open City Project API"
+host: "api.opencityproject.nz"
+basePath: "/v1"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /poi:
+    get:
+      tags:
+      - "Points of Interest"
+      summary: "Get Points of Interest"
+      description: "The Points of Interest endpoint returns information about the\
+        \ Points of Interest near your location.\n"
+      operationId: "poiGET"
+      responses:
+        200:
+          description: "An array of Points of Interest"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/POI"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+    post:
+      tags:
+      - "Points of Interest"
+      summary: "Add Point of Interest"
+      description: "The Points of Interest endpoint to add another point of interest\n"
+      operationId: "poiPOST"
+      parameters:
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: true
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+  /poi/{poiId}:
+    delete:
+      tags:
+      - "Points of Interest"
+      summary: "Remove Point of Interest"
+      description: "The Points of Interest endpoint to remove point of interest\n"
+      operationId: "poiPoiIdDELETE"
+      parameters:
+      - name: "poiId"
+        in: "path"
+        description: "The id of the Point of Interest"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: false
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+    patch:
+      tags:
+      - "Points of Interest"
+      summary: "Update Point of Interest"
+      description: "The Points of Interest endpoint to update point of interest\n"
+      operationId: "poiPoiIdPATCH"
+      parameters:
+      - name: "poiId"
+        in: "path"
+        description: "The id of the Point of Interest"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "poi"
+        description: "Point of Interest object"
+        required: false
+        schema:
+          $ref: "#/definitions/POI"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Success"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointsOfInterest"
+definitions:
+  POI:
+    type: "object"
+    properties:
+      poi_name:
+        type: "string"
+        description: "The name for the sweet free thing"
+      person_name:
+        type: "string"
+        description: "The person who submitted it"
+      reason:
+        type: "string"
+        description: "What makes it sweet"
+      address:
+        type: "string"
+        description: "The address"
+      opening_hours:
+        type: "string"
+        description: "Hours that it is available"
+      category:
+        type: "string"
+        description: "Category for the sweet free thing"
+  Success:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+        description: "Simply true for successful api call"
+  Error:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+      fields:
+        type: "string"

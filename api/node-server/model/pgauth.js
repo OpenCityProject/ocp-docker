@@ -3,8 +3,11 @@ const knex = require('knex')(pgconfig)
 const mime = require('mime-types')
 
 module.exports = {
-  findPerson(username){
-    return knex.select().from('person').where('username', username).first()
+  findPerson(email){
+    return knex.select().from('person').where('email', email).first()
+  }
+, getPassword(personId) {
+    return knex.select().from('password').where('person_id', personId).first();
   }
 , findSession(sessionId){
     return knex.select().from('session').where('session_id', sessionId).first()
