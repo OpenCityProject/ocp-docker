@@ -166,6 +166,51 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       x-swagger-router-controller: "PointOfInterest"
+  /poi-by-category:
+    get:
+      tags:
+      - "Point of Interest"
+      summary: "Get Points of Interest By Category"
+      description: "Returns information about the Points of Interest near your location.\n"
+      operationId: "poiGetByCategory"
+      parameters:
+      - name: "lat"
+        in: "query"
+        description: "Latitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "long"
+        in: "query"
+        description: "Longitude component of location."
+        required: true
+        type: "number"
+        format: "double"
+      - name: "radiusInMetre"
+        in: "query"
+        description: "Search radius in metre, default to 5000 metre."
+        required: false
+        type: "integer"
+        default: 5000
+        format: "int32"
+      - name: "category"
+        in: "query"
+        description: "Category of POIs to get"
+        required: true
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "An array of Points of Interest"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Poi"
+        default:
+          description: "Unexpected error"
+          schema:
+            $ref: "#/definitions/Error"
+      x-swagger-router-controller: "PointOfInterest"
   /login:
     post:
       tags:

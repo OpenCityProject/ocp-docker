@@ -2,7 +2,7 @@ version: "3"
 
 services:
   api:
-    build: ./api-def/node-server
+    build: ./api/node-server
     command: npm run start
     container_name: api
     volumes:

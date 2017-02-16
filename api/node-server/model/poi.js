@@ -13,7 +13,7 @@ module.exports = {
             category_name: name
         });
     },
-    getCategory() {
+    getCategories() {
         return knex.select('category_id AS id', 'category_name AS name').from('category');
     },
     updateCategory(id, name) {
@@ -58,6 +58,9 @@ module.exports = {
                     AND ST_DWithin(ST_GeogFromText(ST_AsText(location_polygon::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'), ${radiusInMetre})\
                 )`))
             .groupBy('poi.poi_id');
+    },
+    getCategoryById(categoryId) {
+        return knex.select('category_name').from('category').where('category_id', categoryId);
     },
     insertPoi(poi) {
         console.log("poi is: ")

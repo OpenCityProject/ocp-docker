@@ -24,6 +24,10 @@ module.exports.poiAllGET = function poiAllGET (req, res, next) {
   PointOfInterest.poiAllGET(req.swagger.params, res, next);
 };
 
+module.exports.poiGetByCategory = function poiGetByCategory (req, res, next) {
+  PointOfInterest.poiGetByCategory(req.swagger.params, res, next);
+};
+
 module.exports.poiDELETE = function poiDELETE (req, res, next) {
   PointOfInterest.poiDELETE(req.swagger.params, res, next);
 };

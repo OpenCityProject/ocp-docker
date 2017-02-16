@@ -8,9 +8,10 @@ exports.categoryGET = function(args, res, next) {
      *
      * returns List
      **/
-    const query = poiModel.getCategory();
+    const query = poiModel.getCategories();
     query.then(response => {
         console.log('categoryGET response:', response);
+        res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
@@ -29,8 +30,8 @@ exports.categoryIdDELETE = function(args, res, next) {
   console.log(`categoryIdDELETE id: ${args.id.value}`);
     const query = poiModel.deleteCategory(args.id.value);
     query.then(response => {
-        console.log('categoryIdDELETE response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -49,8 +50,8 @@ exports.categoryIdPATCH = function(args, res, next) {
   console.log(`categoryIdPATCH id: ${args.id.value}, name: ${args.name.value}`);
     const query = poiModel.updateCategory(args.id.value, args.name.value);
     query.then(response => {
-        console.log('categoryIdPATCH response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -68,8 +69,8 @@ exports.categoryPOST = function(args, res, next) {
   console.log(`categoryPOST name: ${args.name.value}`);
     const query = poiModel.insertCategory(args.name.value);
     query.then(response => {
-        console.log('categoryPOST response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -89,7 +90,29 @@ exports.poiAllGET = function(args, res, next) {
     const query = poiModel.getPoi(args.lat.value, args.long.value, args.radiusInMetre.value || 2000);
     query.then(response => {
         console.log("Number of POIs: " + response.length);
+        res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response || {}, null, 2));
+    }).catch(err => {
+        console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end(JSON.stringify(err));
+    })
+}
+
+exports.poiGetByCategory = function(args, res, next) {
+    const categoryQuery = poiModel.getCategoryById(args.category.value); //first get category name by id
+    categoryQuery.then(response => {
+        var categoryName = response[0].category_name;
+        console.log("cat name is: " + categoryName);
+        const query = poiModel.getPoi(args.lat.value, args.long.value, args.radiusInMetre.value || 2000);
+        query.then(response => {
+            var filteredResponse = response.filter((poi) => {
+                return poi.categories && poi.categories.toLowerCase().split(",").indexOf(categoryName.toLowerCase()) >= 0;
+            })
+            console.log("Number of POIs: " + filteredResponse.length);
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(filteredResponse || {}, null, 2));
+        })
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -108,8 +131,8 @@ exports.poiDELETE = function(args, res, next) {
     console.log(args.poiId.value);
     const query = poiModel.deletePoi(args.poiId.value)
     query.then(response => {
-        console.log(response);
-        res.end(JSON.stringify(response));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -128,7 +151,7 @@ exports.poiGET = function(args, res, next) {
     console.log(args.poiId.value);
     const query = poiModel.getPoiById(args.poiId.value)
     query.then(response => {
-        console.log(response);
+        res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response));
     }).catch(err => {
         console.error('Error', err);
@@ -163,8 +186,8 @@ exports.poiPATCH = function(args, res, next) {
     }
     const query = poiModel.updatePoi(args.poiId.value, poi);
     query.then(response => {
-        console.log(response);
-        res.end(JSON.stringify(response));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -196,8 +219,8 @@ exports.poiPOST = function(args, res, next) {
     }
     const query = poiModel.insertPoi(poi);
     query.then(response => {
-        console.log(response);
-        res.end(JSON.stringify(response));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -232,6 +255,7 @@ exports.tagGET = function(args, res, next) {
     const query = poiModel.getTag();
     query.then(response => {
         console.log('tagGET response:', response);
+        res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify(response || {}, null, 2));
     }).catch(err => {
         console.error('Error', err);
@@ -250,8 +274,8 @@ exports.tagIdDELETE = function(args, res, next) {
     console.log(`tagIdDELETE id: ${args.id.value}`);
     const query = poiModel.deleteTag(args.id.value);
     query.then(response => {
-        console.log('tagIdDELETE response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -270,8 +294,8 @@ exports.tagIdPATCH = function(args, res, next) {
     console.log(`tagIdPATCH id: ${args.id.value}, name: ${args.name.value}`);
     const query = poiModel.updateTag(args.id.value, args.name.value);
     query.then(response => {
-        console.log('tagIdPATCH response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
@@ -289,8 +313,8 @@ exports.tagPOST = function(args, res, next) {
     console.log(`tagPOST name: ${args.name.value}`);
     const query = poiModel.insertTag(args.name.value);
     query.then(response => {
-        console.log('tagPOST response:', response);
-        res.end(JSON.stringify(response || {}, null, 2));
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
