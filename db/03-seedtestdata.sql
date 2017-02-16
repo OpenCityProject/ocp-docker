@@ -3,11 +3,17 @@ INSERT INTO public.category (category_name) VALUES
 	('Kids'),
     ('Natural'),
     ('Sports'),
+    ('Connect with others'),
+    ('Savour the moment'),
+    ('Play/Be active'),
+    ('Keep learning'),
+    ('Make a difference'),
     ('Social Event');
 
 INSERT INTO public.person (person_name, phone_number, email, person_type_id, oauth_provider_id, oauth_token, oauth_token_expiration, person_state_id) VALUES 
     ('Admin', '11111111', 'admin@ocp.com', 1, NULL, 'Abcdefghijklmno', '9999-9-9', 1),
     ('Eddie', '01234567', 'eddie@example.com', 1, NULL, 'Abcdefghijklmno', '9999-9-9', 1),
+    ('Wesley', '012345672', 'wesley@example.com', 1, NULL, 'Abcdefghijklmno', '9999-9-9', 1),
 	('Elliot', '02234567', 'elliot@example.com', 1, NULL, 'Bbcdefghijklmno', '9999-9-9', 1);
 
 INSERT INTO public.recurrence_rule (first_day_of_the_week, recurrence_frequency_id, interval) VALUES

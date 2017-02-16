@@ -1,4 +1,0 @@
-# Prevent local modules etc from being copied onto the Docker image and possibly overwriting modules installed within the image.
-
-.swagger-codegen-ignore
-node_modules
