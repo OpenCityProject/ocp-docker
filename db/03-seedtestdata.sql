@@ -17,8 +17,14 @@ INSERT INTO public.person (person_name, phone_number, email, person_type_id, oau
 	('Elliot', '02234567', 'elliot@example.com', 1, NULL, 'Bbcdefghijklmno', '9999-9-9', 1);
 
 INSERT INTO public.recurrence_rule (first_day_of_the_week, recurrence_frequency_id, interval) VALUES
-    (1, 1, 1),
-    (1, 2, 2);
+    (1, 1, 1), -- Daily
+    (1, 2, 2); -- Weekly
+
+-- Repeat Thursdays, Fridays and Saturdays.
+INSERT INTO public.recurrence_day_of_week (recurrence_rule_id, weekday_id, week_number) VALUES
+	(2, 4, NULL),
+	(2, 5, NULL),
+	(2, 6, NULL);
 
 INSERT INTO public.tag (tag_name) VALUES 
 	('TheColorRunNZ'),
@@ -39,6 +45,7 @@ BEGIN
 			recurrence_rule_id, 
 			start_date, 
 			end_date,
+			is_all_day,
 	        poi_url,
 	        poi_description,
 	        poi_state_id,
@@ -53,9 +60,10 @@ BEGIN
 		 		(-36.721461, 174.706188),
 		 		(-36.721519, 174.705960)
 	 		)',
-			2,
-			'2017-02-01',
-			'2017-12-31',
+			1, -- Repeat Everyday
+			'2017-02-01 00:00:00+13:00', -- All day event
+			'2017-02-01 00:00:00+13:00',
+			'TRUE',
 			'http://google.com/',
 			'Spark hosted 3 on 3 street basketball social competitions.',
 			1,
@@ -72,9 +80,10 @@ BEGIN
 		 		(-36.840992,174.754565),
 		 		(-36.840700,174.753406)
 	 		)',
-			2,
-			'2017-02-01',
-			'2017-03-31',
+			2, -- Repeat Thursdays, Fridays and Saturdays
+			'2017-02-15 17:30:00+13:00', -- 5:30PM to 10PM
+			'2017-02-15 22:00:00+13:00',
+			'FALSE',
 			'http://google.com/',
 			'Summer Night Market by the Wharf.',
 			1,
