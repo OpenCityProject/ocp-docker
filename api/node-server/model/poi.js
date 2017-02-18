@@ -41,13 +41,19 @@ module.exports = {
 				NULL AS is_all_day,\
 				poi_url,\
 				poi_description AS description,\
-				string_agg(category.category_name, ',') AS categories,\
-				string_agg(tag.tag_name, ',') AS tags`))
+                (\
+                    SELECT string_agg(category_name, ',')\
+                    FROM poi_category\
+                        INNER JOIN category ON category.category_id = poi_category.category_id\
+                    WHERE poi_category.poi_id = poi.poi_id\
+                ) AS categories,\
+                (\
+                    SELECT string_agg(tag_name, ',')\
+                    FROM poi_tag\
+                        INNER JOIN tag ON tag.tag_id = poi_tag.tag_id\
+                    WHERE poi_tag.poi_id = poi.poi_id\
+                ) AS tags`))
             .from('poi')
-            .leftJoin('poi_category', 'poi_category.poi_id', 'poi.poi_id')
-            .leftJoin('poi_tag', 'poi_tag.poi_id', 'poi.poi_id')
-            .leftJoin('category', 'category.category_id', 'poi_category.category_id')
-            .leftJoin('tag', 'tag.tag_id', 'poi_tag.tag_id')
             .where(knex.raw(`\
                 (\
                     location_gps_coordinate IS NOT NULL\
