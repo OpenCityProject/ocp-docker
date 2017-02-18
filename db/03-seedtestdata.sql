@@ -16,9 +16,9 @@ INSERT INTO public.person (person_name, phone_number, email, person_type_id, oau
     ('Wesley', '012345672', 'wesley@example.com', 1, NULL, 'Abcdefghijklmno', '9999-9-9', 1),
 	('Elliot', '02234567', 'elliot@example.com', 1, NULL, 'Bbcdefghijklmno', '9999-9-9', 1);
 
-INSERT INTO public.recurrence_rule (first_day_of_the_week, recurrence_frequency_id, interval) VALUES
-    (1, 1, 1), -- Daily
-    (1, 2, 2); -- Weekly
+INSERT INTO public.recurrence_rule (first_day_of_the_week, recurrence_frequency_id, interval, recurrence_end_date) VALUES
+    (1, 1, 1, NULL), -- Daily
+    (1, 2, 2, '2017-03-31'); -- Weekly, and ends on 2017-03-31
 
 -- Repeat Thursdays, Fridays and Saturdays.
 INSERT INTO public.recurrence_day_of_week (recurrence_rule_id, weekday_id, week_number) VALUES
