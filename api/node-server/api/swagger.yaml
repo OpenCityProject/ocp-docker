@@ -654,13 +654,12 @@ definitions:
         description: "Distance from a given location, in metre"
       start_date:
         type: "string"
+        format: "date-time"
         description: "The Start Date for the Point of Interest"
       end_date:
         type: "string"
+        format: "date-time"
         description: "The End Date for the Point of Interest"
-      opening_hours:
-        type: "string"
-        description: "The Opening Hours of the Point of Interest"
       is_all_day:
         type: "boolean"
         description: "Indicates whether the Point of Interest takes place for the\

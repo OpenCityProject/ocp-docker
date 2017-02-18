@@ -37,8 +37,7 @@ module.exports = {
 				END AS distance_in_metre,\
 				start_date,\
 				end_date,\
-				NULL AS opening_hours,\
-				NULL AS is_all_day,\
+				is_all_day,\
 				poi_url,\
 				poi_description AS description,\
                 (\
