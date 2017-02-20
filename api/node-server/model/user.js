@@ -9,5 +9,16 @@ module.exports = {
   getUserType() {
     return knex.select('person_type_id as id', 'person_type_name as name')
       .from('person_type');
+  },
+  getUsers() {
+    return knex.select('person_name').from('person');
+  },
+  insertUser(person) {
+    console.log("person is: ")
+    console.log(person);
+    return knex('person').insert(person);
+  },
+  getUserByName(name) {
+    return knex.select().from('person').where('person_name', name);
   }
 }

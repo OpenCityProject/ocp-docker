@@ -1,0 +1,45 @@
+
+<!-- 
+	This is a test web-page for creating users. This is needed before users can submit POIs.
+-->
+<html>
+<head>
+	<title>Create User</title>
+</head>
+<body>
+<form>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name">
+    </div>
+    <div>
+        <label for="mail">E-mail:</label>
+        <input type="email" id="email" name="user_mail">
+        <input type="button" id="submit-button" value="Submit">
+    </div>
+</form>
+<script>
+	document.getElementById("submit-button").onclick = function () {
+		console.log('hello!'); 
+		var name = document.getElementById("name").value;
+		var email = document.getElementById("email").value;
+		data = {name: name, email: email}
+	  	var xhr = new XMLHttpRequest();
+	  	xhr.open('POST', '/v1/users', true);
+	  	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+		xhr.onreadystatechange = function() {
+		  if (xhr.readyState === 4) {
+		      if (xhr.status === 200 || xhr.status === 204) {
+		         alert('Successfully created user');
+		      } else {
+		         alert('Failed to create user');
+		      }
+		  }
+		}
+
+	  	xhr.send(JSON.stringify(data));
+	};
+</script>
+</body>
+</html>
