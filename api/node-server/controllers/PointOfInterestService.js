@@ -1,5 +1,8 @@
 'use strict';
 const poiModel = require('../model/poi');
+const userModel = require('../model/user');
+const pgconfig = require('../model/pgconfig');
+const knex = require('knex')(pgconfig);
 
 exports.categoryGET = function(args, res, next) {
     /**
@@ -195,7 +198,7 @@ exports.poiPATCH = function(args, res, next) {
     })
 }
 
-exports.poiPOST = function(args, res, next) {
+exports.poiPOST = function(args, auth, res, next) {
     /**
      * Add Point of Interest
      * Upload a new Point of Interest. 
@@ -203,24 +206,31 @@ exports.poiPOST = function(args, res, next) {
      * poi Poi Point of Interest object
      * returns Success
      **/
-    var poiDTO = args.poi.value;
-    var poi = {
-        poi_id: poiDTO.id,
-        poi_name: poiDTO.name,
-        location_title: "unknown",
-        location_polygon: poiDTO.location_polygon,
-        recurrence_rule_id: 12345,
-        start_date: poiDTO.start_date,
-        end_date: poiDTO.end_date,
-        poi_url: poiDTO.poi_url,
-        poi_description: poiDTO.description,
-        poi_state_id: 1,
-        who_added_patron_id: "009b4c56-e2c9-11e6-940b-6f54577f0d9d"
-    }
-    const query = poiModel.insertPoi(poi);
-    query.then(response => {
-        res.writeHead(204, {'Content-Type': 'text/plain'});
-        res.end();
+    console.log(auth);
+    var credentials = new Buffer(auth.split(" ").pop(), "base64").toString("ascii").split(":"); 
+    // TODO check password
+    const userQuery = userModel.getUserIdByEmail(credentials[0]); //credentials [0] should be email (using basic auth)
+    userQuery.then(response => {
+        console.log(response[0].person_id);
+        var poiDTO = args.poi.value;
+        var poi = {
+            poi_name: poiDTO.name,
+            location_title: poiDTO.name,
+            location_gps_coordinate: knex.raw('point(10, 10)'),
+            location_polygon: poiDTO.location_polygon,
+            recurrence_rule_id: 1,
+            start_date: poiDTO.start_date,
+            end_date: poiDTO.end_date,
+            poi_url: poiDTO.poi_url,
+            poi_description: poiDTO.description,
+            poi_state_id: 1,
+            who_added_person_id: response[0].person_id //person_id of the user email that was inputted
+        }
+        const query = poiModel.insertPoi(poi);
+        query.then(response => {
+            res.writeHead(204, {'Content-Type': 'text/plain'});
+            res.end();
+        })
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});

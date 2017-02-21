@@ -18,7 +18,7 @@ module.exports = {
     console.log(person);
     return knex('person').insert(person);
   },
-  getUserByName(name) {
-    return knex.select().from('person').where('person_name', name);
+  getUserIdByEmail(email) {
+    return knex.select('person_id').from('person').where('email', email);
   }
 }
