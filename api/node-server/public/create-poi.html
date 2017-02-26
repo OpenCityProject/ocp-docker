@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title>Add your sweet free thing</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 <form>
@@ -13,26 +14,51 @@
         <input type="email" id="email">
     </div>
     <div>
-        <label for="name">Name of Sweet Free Thing:</label>
-        <input type="text" id="name">
+        <label for="sweetFreeThing">Name of Sweet Free Thing:</label>
+        <input type="text" id="sweetFreeThing">
     </div>
      <div>
-        <label for="name">What makes it sweet?</label>
+        <label for="description">What makes it sweet?</label>
         <input type="text" id="description">
     </div>
+	<div>
+        <label for="category">Category:</label>
+		<select id="category" />
+	</div><br/>
     <input type="button" id="submit-button" value="Submit">
 </form>
 <script>
+	$(document).ready(function(){
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "/v1/category");
+		xhr.send();
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var data = JSON.parse(this.responseText);
+				console.log(data);
+				var select = document.getElementById("category");
+				data.forEach((category) => {
+					var opt = document.createElement("option");
+					opt.value = category.id;
+					opt.textContent = category.name;
+					select.appendChild(opt);
+				});
+			}
+		}
+	});
+
 	document.getElementById("submit-button").onclick = function () {
 		console.log('hello!'); 
 		var email = document.getElementById("email").value;
-		var name = document.getElementById("name").value;
+		var name = document.getElementById("sweetFreeThing").value;
 		var description = document.getElementById("description").value;
-		data = {name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, is_all_day: false, poi_url: "", description: description, categories: "", tags: "" }
+		var category = document.getElementById("category").value;
+
+		data = {name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, is_all_day: false, poi_url: "", description: description, categories: category, tags: "" }
 	  	var xhr = new XMLHttpRequest();
 	  	xhr.open('POST', '/v1/poi', true);
 	  	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-	  	xhr.setRequestHeader('Authorization', 'Basic ' + btoa(email + ":password"));
+	  	xhr.setRequestHeader('Authorization', 'Basic ' + btoa(email + ":password")); //don't need passwords for testing
 
 		xhr.onreadystatechange = function() {
 		  if (xhr.readyState === 4) {

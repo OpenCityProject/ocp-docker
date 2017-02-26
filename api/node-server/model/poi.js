@@ -69,7 +69,10 @@ module.exports = {
     insertPoi(poi) {
         console.log("poi is: ")
         console.log(poi);
-        return knex('poi').insert(poi);
+        return knex('poi').insert(poi).returning("poi_id");
+    },
+    insertPoiCategory(poi_id, category_id) {
+        return knex('poi_category').insert({poi_id, category_id});
     },
     deletePoi(poiId) {
         return knex('poi').where('poi_id', poiId).del();

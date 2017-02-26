@@ -209,6 +209,8 @@ exports.poiPOST = function(args, auth, res, next) {
     console.log(auth);
     var credentials = new Buffer(auth.split(" ").pop(), "base64").toString("ascii").split(":"); 
     // TODO check password
+
+    // first find user by id
     const userQuery = userModel.getUserIdByEmail(credentials[0]); //credentials [0] should be email (using basic auth)
     userQuery.then(response => {
         console.log(response[0].person_id);
@@ -226,10 +228,17 @@ exports.poiPOST = function(args, auth, res, next) {
             poi_state_id: 1,
             who_added_person_id: response[0].person_id //person_id of the user email that was inputted
         }
+        // now create query to insert POI
         const query = poiModel.insertPoi(poi);
-        query.then(response => {
-            res.writeHead(204, {'Content-Type': 'text/plain'});
-            res.end();
+        query.then(id => {
+            console.log(id[0]);
+            // finally create another query to post category
+            const categoryQuery = poiModel.insertPoiCategory(id[0], poiDTO.categories);
+            categoryQuery.then(categoryResponse => {
+                console.log(categoryResponse);
+                res.writeHead(204, {'Content-Type': 'text/plain'});
+                res.end();
+            })
         })
     }).catch(err => {
         console.error('Error', err);
