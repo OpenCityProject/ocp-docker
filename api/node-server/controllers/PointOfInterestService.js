@@ -223,6 +223,7 @@ exports.poiPOST = function(args, auth, res, next) {
             recurrence_rule_id: 1,
             start_date: poiDTO.start_date,
             end_date: poiDTO.end_date,
+            is_all_day: poiDTO.is_all_day,
             poi_url: poiDTO.poi_url,
             poi_description: poiDTO.description,
             poi_state_id: 1,

@@ -22,6 +22,19 @@
         <input type="text" id="description">
     </div>
 	<div>
+	<div>
+        <label for="start-time">Start Time:</label>
+		<input type="datetime" id="start-time" value="00:00">
+		<label for="end-time">End Time:</label>
+		<input type="time" id="end-time" value="23:59">
+		<input type="checkbox" id="is-all-day"> All Day<br>
+	</div>
+	<div>
+        <label for="description">What days is it available? (eg. 1 = Monday, 2 = Tuesday, etc.)</label>
+        <input type="text" id="days-available" placeholder="1,2,3">
+		<input type="checkbox" id="is-every-day"> Every Day (ignores box above)<br>
+    </div>
+	<div>
         <label for="category">Category:</label>
 		<select id="category" />
 	</div><br/>
@@ -53,8 +66,17 @@
 		var name = document.getElementById("sweetFreeThing").value;
 		var description = document.getElementById("description").value;
 		var category = document.getElementById("category").value;
+		var startTime = document.getElementById("start-time").value;
+		var startDate = new Date(), endDate = new Date();
+		startDate.setHours(startTime.split(":")[0]);
+		startDate.setMinutes(startTime.split(":")[1], 0, 0);
+		var endTime = document.getElementById("end-time").value;
+		endDate.setHours(endTime.split(":")[0]);
+		endDate.setMinutes(endTime.split(":")[1],0,0);
+		var isAllDay = document.getElementById("is-all-day").checked; //boolean
 
-		data = {name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, is_all_day: false, poi_url: "", description: description, categories: category, tags: "" }
+		data = { name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, start_date: startDate.toISOString(), end_date: endDate.toISOString(), is_all_day: isAllDay, 
+					poi_url: "", description: description, categories: category, tags: "" }
 	  	var xhr = new XMLHttpRequest();
 	  	xhr.open('POST', '/v1/poi', true);
 	  	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
