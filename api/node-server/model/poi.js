@@ -74,6 +74,12 @@ module.exports = {
     insertPoiCategory(poi_id, category_id) {
         return knex('poi_category').insert({poi_id, category_id});
     },
+    insertPoiRecurrenceRule(first_day_of_the_week, recurrence_frequency_id, interval, recurrence_end_date) {
+        return knex('recurrence_rule').insert({ first_day_of_the_week, recurrence_frequency_id, interval, recurrence_end_date}).returning("recurrence_rule_id");
+    },
+    insertRecurrenceDayOfWeek(days) {
+        return knex('recurrence_day_of_week').insert(days);
+    },
     deletePoi(poiId) {
         return knex('poi').where('poi_id', poiId).del();
     },

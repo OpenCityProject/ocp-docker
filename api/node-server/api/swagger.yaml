@@ -669,7 +669,13 @@ definitions:
         description: "URL to an external website for the Point of Interest"
       description:
         type: "string"
-        description: "Description of the Point of Interest"
+        description: "Description of what makes the Point of Interest sweet"
+      is_every_day:
+        type: "boolean"
+        description: "Whether or not the POI can be visited every day"
+      days_of_week:
+        type: "string"
+        description: "Comma-separated string of numbers: eg. 1,2,3 for Mon, Tues, Wed"
       categories:
         type: "string"
         description: "A list of categories for the Point of Interest, deliminated\

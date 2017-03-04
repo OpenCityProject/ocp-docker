@@ -215,37 +215,65 @@ exports.poiPOST = function(args, auth, res, next) {
     userQuery.then(response => {
         console.log(response[0].person_id);
         var poiDTO = args.poi.value;
-        var poi = {
-            poi_name: poiDTO.name,
-            location_title: poiDTO.name,
-            location_gps_coordinate: knex.raw('point(10, 10)'),
-            location_polygon: poiDTO.location_polygon,
-            recurrence_rule_id: 1,
-            start_date: poiDTO.start_date,
-            end_date: poiDTO.end_date,
-            is_all_day: poiDTO.is_all_day,
-            poi_url: poiDTO.poi_url,
-            poi_description: poiDTO.description,
-            poi_state_id: 1,
-            who_added_person_id: response[0].person_id //person_id of the user email that was inputted
-        }
-        // now create query to insert POI
-        const query = poiModel.insertPoi(poi);
-        query.then(id => {
-            console.log(id[0]);
-            // finally create another query to post category
-            const categoryQuery = poiModel.insertPoiCategory(id[0], poiDTO.categories);
-            categoryQuery.then(categoryResponse => {
-                console.log(categoryResponse);
-                res.writeHead(204, {'Content-Type': 'text/plain'});
-                res.end();
+        
+        // add recurrence recurrence rule 
+        getRecurrenceRule(poiDTO, function(recurrenceRuleId) { //pass in function as callback
+            var poi = {
+                poi_name: poiDTO.name,
+                location_title: poiDTO.name,
+                location_gps_coordinate: knex.raw('point(10, 10)'),
+                location_polygon: poiDTO.location_polygon,
+                recurrence_rule_id: recurrenceRuleId,
+                start_date: poiDTO.start_date,
+                end_date: poiDTO.end_date,
+                is_all_day: poiDTO.is_all_day,
+                poi_url: poiDTO.poi_url,
+                poi_description: poiDTO.description,
+                poi_state_id: 1,
+                who_added_person_id: response[0].person_id //person_id of the user email that was inputted
+            }
+            // now create query to insert POI
+            const query = poiModel.insertPoi(poi);
+            query.then(id => {
+                console.log(id[0]);
+                // finally create another query to post category
+                const categoryQuery = poiModel.insertPoiCategory(id[0], poiDTO.categories);
+                categoryQuery.then(categoryResponse => {
+                    console.log(categoryResponse);
+                    res.writeHead(204, {'Content-Type': 'text/plain'}); // pass this in as a callback
+                    res.end();
+                })
             })
-        })
+        });
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});
         res.end(JSON.stringify(err));
     })
+}
+
+function getRecurrenceRule(poiDTO, callback) {
+    var recurrenceRuleId;
+    if (poiDTO.is_every_day) {
+        recurrenceRuleId = 1; //daily
+        callback(recurrenceRuleId);
+    } else {
+        //const recurrenceQuery = poiModel.insertPoiRecurrenceRule(1, 1, 1, NULL); //daily
+        recurrenceRuleId = 2; //daily
+        const query = poiModel.insertPoiRecurrenceRule(1, 2, 1, null); // insert new weekly rule
+        query.then(id => {
+            console.log(id[0]);
+            var dayIndexes = poiDTO.days_of_week.split(",");
+            var days = dayIndexes.map((dayIndex) => {
+                return { recurrence_rule_id: id[0], weekday_id: dayIndex, week_number: null };
+            })
+            console.log(days);
+            const recurrenceQuery = poiModel.insertRecurrenceDayOfWeek(days);
+            recurrenceQuery.then(response => {
+                callback(id[0]);
+            })
+        })
+    }
 }
 
 exports.poiStateAllGET = function(args, res, next) {

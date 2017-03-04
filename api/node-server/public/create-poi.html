@@ -32,7 +32,7 @@
 	<div>
         <label for="description">What days is it available? (eg. 1 = Monday, 2 = Tuesday, etc.)</label>
         <input type="text" id="days-available" placeholder="1,2,3">
-		<input type="checkbox" id="is-every-day"> Every Day (ignores box above)<br>
+		<input type="checkbox" id="is-every-day" checked="true"> Every Day (ignores previous box)<br>
     </div>
 	<div>
         <label for="category">Category:</label>
@@ -74,9 +74,11 @@
 		endDate.setHours(endTime.split(":")[0]);
 		endDate.setMinutes(endTime.split(":")[1],0,0);
 		var isAllDay = document.getElementById("is-all-day").checked; //boolean
+		var isEveryDay = document.getElementById("is-every-day").checked; //boolean
+		var daysOfWeek = document.getElementById("days-available").value;
 
 		data = { name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, start_date: startDate.toISOString(), end_date: endDate.toISOString(), is_all_day: isAllDay, 
-					poi_url: "", description: description, categories: category, tags: "" }
+					poi_url: "", description: description, categories: category, tags: "", is_every_day: isEveryDay, days_of_week: daysOfWeek }
 	  	var xhr = new XMLHttpRequest();
 	  	xhr.open('POST', '/v1/poi', true);
 	  	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
