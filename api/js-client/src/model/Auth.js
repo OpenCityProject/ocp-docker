@@ -23,7 +23,7 @@
     if (!root.OpenCityProjectApi) {
       root.OpenCityProjectApi = {};
     }
-    root.OpenCityProjectApi.Success = factory(root.OpenCityProjectApi.ApiClient);
+    root.OpenCityProjectApi.Auth = factory(root.OpenCityProjectApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -32,14 +32,14 @@
 
 
   /**
-   * The Success model module.
-   * @module model/Success
+   * The Auth model module.
+   * @module model/Auth
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>Success</code>.
-   * @alias module:model/Success
+   * Constructs a new <code>Auth</code>.
+   * @alias module:model/Auth
    * @class
    */
   var exports = function() {
@@ -47,48 +47,37 @@
 
 
 
-
   };
 
   /**
-   * Constructs a <code>Success</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>Auth</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Success} obj Optional instance to populate.
-   * @return {module:model/Success} The populated <code>Success</code> instance.
+   * @param {module:model/Auth} obj Optional instance to populate.
+   * @return {module:model/Auth} The populated <code>Auth</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('code')) {
-        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
+      if (data.hasOwnProperty('email')) {
+        obj['email'] = ApiClient.convertToType(data['email'], 'String');
       }
-      if (data.hasOwnProperty('message')) {
-        obj['message'] = ApiClient.convertToType(data['message'], 'String');
-      }
-      if (data.hasOwnProperty('object')) {
-        obj['object'] = ApiClient.convertToType(data['object'], Object);
+      if (data.hasOwnProperty('password')) {
+        obj['password'] = ApiClient.convertToType(data['password'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Response code
-   * @member {Number} code
+   * @member {String} email
    */
-  exports.prototype['code'] = undefined;
+  exports.prototype['email'] = undefined;
   /**
-   * Response message
-   * @member {String} message
+   * @member {String} password
    */
-  exports.prototype['message'] = undefined;
-  /**
-   * Response object
-   * @member {Object} object
-   */
-  exports.prototype['object'] = undefined;
+  exports.prototype['password'] = undefined;
 
 
 

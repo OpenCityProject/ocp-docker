@@ -3,6 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **Boolean** | Simply true for successful api call | [optional] 
+**code** | **Number** | Response code | [optional] 
+**message** | **String** | Response message | [optional] 
+**_object** | **Object** | Response object | [optional] 
 
 

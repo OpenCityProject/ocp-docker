@@ -9,28 +9,17 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient', 'model/Error', 'model/POI', 'model/Success', 'model/User', 'api/PointsOfInterestApi', 'api/UsersApi'], factory);
+    define(['ApiClient', 'model/Auth', 'model/Category', 'model/Error', 'model/Poi', 'model/PoiState', 'model/RecurrenceFrequency', 'model/Success', 'model/Tag', 'model/User', 'model/UserState', 'model/UserType', 'model/Weekday', 'api/PointOfInterestApi', 'api/RecurrenceApi', 'api/UserApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Error'), require('./model/POI'), require('./model/Success'), require('./model/User'), require('./api/PointsOfInterestApi'), require('./api/UsersApi'));
+    module.exports = factory(require('./ApiClient'), require('./model/Auth'), require('./model/Category'), require('./model/Error'), require('./model/Poi'), require('./model/PoiState'), require('./model/RecurrenceFrequency'), require('./model/Success'), require('./model/Tag'), require('./model/User'), require('./model/UserState'), require('./model/UserType'), require('./model/Weekday'), require('./api/PointOfInterestApi'), require('./api/RecurrenceApi'), require('./api/UserApi'));
   }
-}(function(ApiClient, Error, POI, Success, User, PointsOfInterestApi, UsersApi) {
+}(function(ApiClient, Auth, Category, Error, Poi, PoiState, RecurrenceFrequency, Success, Tag, User, UserState, UserType, Weekday, PointOfInterestApi, RecurrenceApi, UserApi) {
   'use strict';
 
   /**
@@ -71,35 +60,80 @@
      */
     ApiClient: ApiClient,
     /**
+     * The Auth model constructor.
+     * @property {module:model/Auth}
+     */
+    Auth: Auth,
+    /**
+     * The Category model constructor.
+     * @property {module:model/Category}
+     */
+    Category: Category,
+    /**
      * The Error model constructor.
      * @property {module:model/Error}
      */
     Error: Error,
     /**
-     * The POI model constructor.
-     * @property {module:model/POI}
+     * The Poi model constructor.
+     * @property {module:model/Poi}
      */
-    POI: POI,
+    Poi: Poi,
+    /**
+     * The PoiState model constructor.
+     * @property {module:model/PoiState}
+     */
+    PoiState: PoiState,
+    /**
+     * The RecurrenceFrequency model constructor.
+     * @property {module:model/RecurrenceFrequency}
+     */
+    RecurrenceFrequency: RecurrenceFrequency,
     /**
      * The Success model constructor.
      * @property {module:model/Success}
      */
     Success: Success,
     /**
+     * The Tag model constructor.
+     * @property {module:model/Tag}
+     */
+    Tag: Tag,
+    /**
      * The User model constructor.
      * @property {module:model/User}
      */
     User: User,
     /**
-     * The PointsOfInterestApi service constructor.
-     * @property {module:api/PointsOfInterestApi}
+     * The UserState model constructor.
+     * @property {module:model/UserState}
      */
-    PointsOfInterestApi: PointsOfInterestApi,
+    UserState: UserState,
     /**
-     * The UsersApi service constructor.
-     * @property {module:api/UsersApi}
+     * The UserType model constructor.
+     * @property {module:model/UserType}
      */
-    UsersApi: UsersApi
+    UserType: UserType,
+    /**
+     * The Weekday model constructor.
+     * @property {module:model/Weekday}
+     */
+    Weekday: Weekday,
+    /**
+     * The PointOfInterestApi service constructor.
+     * @property {module:api/PointOfInterestApi}
+     */
+    PointOfInterestApi: PointOfInterestApi,
+    /**
+     * The RecurrenceApi service constructor.
+     * @property {module:api/RecurrenceApi}
+     */
+    RecurrenceApi: RecurrenceApi,
+    /**
+     * The UserApi service constructor.
+     * @property {module:api/UserApi}
+     */
+    UserApi: UserApi
   };
 
   return exports;

@@ -9,17 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(root, factory) {
@@ -65,8 +54,8 @@
       //expect(instance).to.be.a(OpenCityProjectApi.User);
     });
 
-    it('should have the property username (base name: "username")', function() {
-      // uncomment below and update the code to test the property username
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
       //var instane = new OpenCityProjectApi.User();
       //expect(instance).to.be();
     });
@@ -79,6 +68,42 @@
 
     it('should have the property email (base name: "email")', function() {
       // uncomment below and update the code to test the property email
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property phone (base name: "phone")', function() {
+      // uncomment below and update the code to test the property phone
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property type (base name: "type")', function() {
+      // uncomment below and update the code to test the property type
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property state (base name: "state")', function() {
+      // uncomment below and update the code to test the property state
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property oauthProvider (base name: "oauth_provider")', function() {
+      // uncomment below and update the code to test the property oauthProvider
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property oauthToken (base name: "oauth_token")', function() {
+      // uncomment below and update the code to test the property oauthToken
+      //var instane = new OpenCityProjectApi.User();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property oauthTokenExpiration (base name: "oauth_token_expiration")', function() {
+      // uncomment below and update the code to test the property oauthTokenExpiration
       //var instane = new OpenCityProjectApi.User();
       //expect(instance).to.be();
     });

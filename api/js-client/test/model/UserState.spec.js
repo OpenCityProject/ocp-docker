@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new OpenCityProjectApi.Success();
+    instance = new OpenCityProjectApi.UserState();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,28 +47,22 @@
       object[property] = value;
   }
 
-  describe('Success', function() {
-    it('should create an instance of Success', function() {
-      // uncomment below and update the code to test Success
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be.a(OpenCityProjectApi.Success);
+  describe('UserState', function() {
+    it('should create an instance of UserState', function() {
+      // uncomment below and update the code to test UserState
+      //var instane = new OpenCityProjectApi.UserState();
+      //expect(instance).to.be.a(OpenCityProjectApi.UserState);
     });
 
-    it('should have the property code (base name: "code")', function() {
-      // uncomment below and update the code to test the property code
-      //var instane = new OpenCityProjectApi.Success();
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instane = new OpenCityProjectApi.UserState();
       //expect(instance).to.be();
     });
 
-    it('should have the property message (base name: "message")', function() {
-      // uncomment below and update the code to test the property message
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property _object (base name: "object")', function() {
-      // uncomment below and update the code to test the property _object
-      //var instane = new OpenCityProjectApi.Success();
+    it('should have the property name (base name: "name")', function() {
+      // uncomment below and update the code to test the property name
+      //var instane = new OpenCityProjectApi.UserState();
       //expect(instance).to.be();
     });
 

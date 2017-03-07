@@ -2,7 +2,7 @@
   "name": "open_city_project_api",
   "version": "1.0.0",
   "description": "Interact_with_your_city_with_the_Open_City_Project_API",
-  "license": "Apache-2.0",
+  "license": "Unlicense",
   "main": "src/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --recursive"

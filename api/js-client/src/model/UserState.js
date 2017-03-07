@@ -23,7 +23,7 @@
     if (!root.OpenCityProjectApi) {
       root.OpenCityProjectApi = {};
     }
-    root.OpenCityProjectApi.Success = factory(root.OpenCityProjectApi.ApiClient);
+    root.OpenCityProjectApi.UserState = factory(root.OpenCityProjectApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -32,14 +32,15 @@
 
 
   /**
-   * The Success model module.
-   * @module model/Success
+   * The UserState model module.
+   * @module model/UserState
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>Success</code>.
-   * @alias module:model/Success
+   * Constructs a new <code>UserState</code>.
+   * State of a user, i.e. Active, Deleted, Disabled, EmailNotVerified, Locked
+   * @alias module:model/UserState
    * @class
    */
   var exports = function() {
@@ -47,48 +48,37 @@
 
 
 
-
   };
 
   /**
-   * Constructs a <code>Success</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>UserState</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/Success} obj Optional instance to populate.
-   * @return {module:model/Success} The populated <code>Success</code> instance.
+   * @param {module:model/UserState} obj Optional instance to populate.
+   * @return {module:model/UserState} The populated <code>UserState</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('code')) {
-        obj['code'] = ApiClient.convertToType(data['code'], 'Number');
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'Number');
       }
-      if (data.hasOwnProperty('message')) {
-        obj['message'] = ApiClient.convertToType(data['message'], 'String');
-      }
-      if (data.hasOwnProperty('object')) {
-        obj['object'] = ApiClient.convertToType(data['object'], Object);
+      if (data.hasOwnProperty('name')) {
+        obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Response code
-   * @member {Number} code
+   * @member {Number} id
    */
-  exports.prototype['code'] = undefined;
+  exports.prototype['id'] = undefined;
   /**
-   * Response message
-   * @member {String} message
+   * @member {String} name
    */
-  exports.prototype['message'] = undefined;
-  /**
-   * Response object
-   * @member {Object} object
-   */
-  exports.prototype['object'] = undefined;
+  exports.prototype['name'] = undefined;
 
 
 

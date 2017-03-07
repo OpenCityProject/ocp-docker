@@ -9,17 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(root, factory) {
@@ -34,7 +23,7 @@
     if (!root.OpenCityProjectApi) {
       root.OpenCityProjectApi = {};
     }
-    root.OpenCityProjectApi.POI = factory(root.OpenCityProjectApi.ApiClient);
+    root.OpenCityProjectApi.Poi = factory(root.OpenCityProjectApi.ApiClient);
   }
 }(this, function(ApiClient) {
   'use strict';
@@ -43,14 +32,15 @@
 
 
   /**
-   * The POI model module.
-   * @module model/POI
+   * The Poi model module.
+   * @module model/Poi
    * @version 1.0.0
    */
 
   /**
-   * Constructs a new <code>POI</code>.
-   * @alias module:model/POI
+   * Constructs a new <code>Poi</code>.
+   * Point of Interest
+   * @alias module:model/Poi
    * @class
    */
   var exports = function() {
@@ -62,56 +52,87 @@
 
 
 
+
+
+
+
+
+
+
+
+
   };
 
   /**
-   * Constructs a <code>POI</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>Poi</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/POI} obj Optional instance to populate.
-   * @return {module:model/POI} The populated <code>POI</code> instance.
+   * @param {module:model/Poi} obj Optional instance to populate.
+   * @return {module:model/Poi} The populated <code>Poi</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('poi_id')) {
-        obj['poi_id'] = ApiClient.convertToType(data['poi_id'], 'String');
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
-      if (data.hasOwnProperty('poi_name')) {
-        obj['poi_name'] = ApiClient.convertToType(data['poi_name'], 'String');
-      }
-      if (data.hasOwnProperty('poi_type')) {
-        obj['poi_type'] = ApiClient.convertToType(data['poi_type'], 'String');
+      if (data.hasOwnProperty('name')) {
+        obj['name'] = ApiClient.convertToType(data['name'], 'String');
       }
       if (data.hasOwnProperty('gps_lat')) {
         obj['gps_lat'] = ApiClient.convertToType(data['gps_lat'], 'String');
       }
-      if (data.hasOwnProperty('gps_lng')) {
-        obj['gps_lng'] = ApiClient.convertToType(data['gps_lng'], 'String');
+      if (data.hasOwnProperty('gps_long')) {
+        obj['gps_long'] = ApiClient.convertToType(data['gps_long'], 'String');
       }
-      if (data.hasOwnProperty('category')) {
-        obj['category'] = ApiClient.convertToType(data['category'], 'String');
+      if (data.hasOwnProperty('location_polygon')) {
+        obj['location_polygon'] = ApiClient.convertToType(data['location_polygon'], 'String');
+      }
+      if (data.hasOwnProperty('distance_in_metre')) {
+        obj['distance_in_metre'] = ApiClient.convertToType(data['distance_in_metre'], 'Number');
+      }
+      if (data.hasOwnProperty('start_date')) {
+        obj['start_date'] = ApiClient.convertToType(data['start_date'], 'Date');
+      }
+      if (data.hasOwnProperty('end_date')) {
+        obj['end_date'] = ApiClient.convertToType(data['end_date'], 'Date');
+      }
+      if (data.hasOwnProperty('is_all_day')) {
+        obj['is_all_day'] = ApiClient.convertToType(data['is_all_day'], 'Boolean');
+      }
+      if (data.hasOwnProperty('poi_url')) {
+        obj['poi_url'] = ApiClient.convertToType(data['poi_url'], 'String');
+      }
+      if (data.hasOwnProperty('description')) {
+        obj['description'] = ApiClient.convertToType(data['description'], 'String');
+      }
+      if (data.hasOwnProperty('is_every_day')) {
+        obj['is_every_day'] = ApiClient.convertToType(data['is_every_day'], 'Boolean');
+      }
+      if (data.hasOwnProperty('days_of_week')) {
+        obj['days_of_week'] = ApiClient.convertToType(data['days_of_week'], 'String');
+      }
+      if (data.hasOwnProperty('categories')) {
+        obj['categories'] = ApiClient.convertToType(data['categories'], 'String');
+      }
+      if (data.hasOwnProperty('tags')) {
+        obj['tags'] = ApiClient.convertToType(data['tags'], 'String');
       }
     }
     return obj;
   }
 
   /**
-   * Unique identifier representing a specific point of interest for a given latitude & longitude.
-   * @member {String} poi_id
+   * Unique identifier representing a specific point of interest for a given latitude & longitude
+   * @member {String} id
    */
-  exports.prototype['poi_id'] = undefined;
+  exports.prototype['id'] = undefined;
   /**
-   * The name for the Point of Interest
-   * @member {String} poi_name
+   * The name of the Point of Interest
+   * @member {String} name
    */
-  exports.prototype['poi_name'] = undefined;
-  /**
-   * The type of Point of Interest.
-   * @member {module:model/POI.PoiTypeEnum} poi_type
-   */
-  exports.prototype['poi_type'] = undefined;
+  exports.prototype['name'] = undefined;
   /**
    * The latitude for the Point of Interest
    * @member {String} gps_lat
@@ -119,64 +140,65 @@
   exports.prototype['gps_lat'] = undefined;
   /**
    * The longitude for the Point of Interest
-   * @member {String} gps_lng
+   * @member {String} gps_long
    */
-  exports.prototype['gps_lng'] = undefined;
+  exports.prototype['gps_long'] = undefined;
   /**
-   * Category for the point of interest
-   * @member {module:model/POI.CategoryEnum} category
+   * The location polygon for the Point of Interest (currently unused)
+   * @member {String} location_polygon
    */
-  exports.prototype['category'] = undefined;
-
-
+  exports.prototype['location_polygon'] = undefined;
   /**
-   * Allowed values for the <code>poi_type</code> property.
-   * @enum {String}
-   * @readonly
+   * Distance from a given location, in metres
+   * @member {Number} distance_in_metre
    */
-  exports.PoiTypeEnum = {
-    /**
-     * value: "poi"
-     * @const
-     */
-    "poi": "poi",
-    /**
-     * value: "event"
-     * @const
-     */
-    "event": "event"  };
-
+  exports.prototype['distance_in_metre'] = undefined;
   /**
-   * Allowed values for the <code>category</code> property.
-   * @enum {String}
-   * @readonly
+   * The Start Time for the Point of Interest in ISO standard. Note: the actual date doesn't matter, only the time (hours and minutes)
+   * @member {Date} start_date
    */
-  exports.CategoryEnum = {
-    /**
-     * value: "First"
-     * @const
-     */
-    "First": "First",
-    /**
-     * value: "Second"
-     * @const
-     */
-    "Second": "Second",
-    /**
-     * value: "Third"
-     * @const
-     */
-    "Third": "Third",
-    /**
-     * value: "Fourth"
-     * @const
-     */
-    "Fourth": "Fourth",
-    /**
-     * value: "Fifth"
-     * @const
-     */
-    "Fifth": "Fifth"  };
+  exports.prototype['start_date'] = undefined;
+  /**
+   * The End Time for the Point of Interest in ISO standard. Note: the actual date doesn't matter, only the time (hours and minutes)
+   * @member {Date} end_date
+   */
+  exports.prototype['end_date'] = undefined;
+  /**
+   * Indicates whether the Point of Interest takes place for the entire day
+   * @member {Boolean} is_all_day
+   */
+  exports.prototype['is_all_day'] = undefined;
+  /**
+   * URL to an external website for the Point of Interest (currently unused)
+   * @member {String} poi_url
+   */
+  exports.prototype['poi_url'] = undefined;
+  /**
+   * Description of what makes the Point of Interest sweet
+   * @member {String} description
+   */
+  exports.prototype['description'] = undefined;
+  /**
+   * Whether or not the POI can be visited every day
+   * @member {Boolean} is_every_day
+   */
+  exports.prototype['is_every_day'] = undefined;
+  /**
+   * Comma-separated string of numbers: eg. 1,2,3 for Mon, Tues, Wed
+   * @member {String} days_of_week
+   */
+  exports.prototype['days_of_week'] = undefined;
+  /**
+   * A list of category_ids for the Point of Interest, deliminated by commas (Currently only supports a single category_id i.e. a single integer)
+   * @member {String} categories
+   */
+  exports.prototype['categories'] = undefined;
+  /**
+   * A list of tags for the Point of Interest, deliminated by commas (current unused)
+   * @member {String} tags
+   */
+  exports.prototype['tags'] = undefined;
+
 
 
   return exports;

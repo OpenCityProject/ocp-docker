@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **Number** |  | [optional] 
-**message** | **String** |  | [optional] 
+**code** | **Number** | Response code | [optional] 
+**message** | **String** | Response message | [optional] 
 **fields** | **String** |  | [optional] 
 
 

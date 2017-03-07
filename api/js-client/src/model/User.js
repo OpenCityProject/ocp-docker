@@ -9,17 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(root, factory) {
@@ -59,6 +48,12 @@
 
 
 
+
+
+
+
+
+
   };
 
   /**
@@ -72,8 +67,8 @@
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('username')) {
-        obj['username'] = ApiClient.convertToType(data['username'], 'String');
+      if (data.hasOwnProperty('id')) {
+        obj['id'] = ApiClient.convertToType(data['id'], 'String');
       }
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
@@ -81,25 +76,73 @@
       if (data.hasOwnProperty('email')) {
         obj['email'] = ApiClient.convertToType(data['email'], 'String');
       }
+      if (data.hasOwnProperty('phone')) {
+        obj['phone'] = ApiClient.convertToType(data['phone'], 'String');
+      }
+      if (data.hasOwnProperty('type')) {
+        obj['type'] = ApiClient.convertToType(data['type'], 'String');
+      }
+      if (data.hasOwnProperty('state')) {
+        obj['state'] = ApiClient.convertToType(data['state'], 'String');
+      }
+      if (data.hasOwnProperty('oauth_provider')) {
+        obj['oauth_provider'] = ApiClient.convertToType(data['oauth_provider'], 'String');
+      }
+      if (data.hasOwnProperty('oauth_token')) {
+        obj['oauth_token'] = ApiClient.convertToType(data['oauth_token'], 'String');
+      }
+      if (data.hasOwnProperty('oauth_token_expiration')) {
+        obj['oauth_token_expiration'] = ApiClient.convertToType(data['oauth_token_expiration'], 'Date');
+      }
     }
     return obj;
   }
 
   /**
    * Unique identifier representing a user
-   * @member {String} username
+   * @member {String} id
    */
-  exports.prototype['username'] = undefined;
+  exports.prototype['id'] = undefined;
   /**
-   * The name the user uses to represent themselves
+   * Name of the user
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
   /**
-   * The users email address
+   * The email address of the user
    * @member {String} email
    */
   exports.prototype['email'] = undefined;
+  /**
+   * The phone number of the user
+   * @member {String} phone
+   */
+  exports.prototype['phone'] = undefined;
+  /**
+   * Type of the user account
+   * @member {String} type
+   */
+  exports.prototype['type'] = undefined;
+  /**
+   * State of the user account
+   * @member {String} state
+   */
+  exports.prototype['state'] = undefined;
+  /**
+   * OAuth Provider if the user is SSO to the system
+   * @member {String} oauth_provider
+   */
+  exports.prototype['oauth_provider'] = undefined;
+  /**
+   * SSO token retrieved from the OAuth Provider
+   * @member {String} oauth_token
+   */
+  exports.prototype['oauth_token'] = undefined;
+  /**
+   * SSOExpiration date of the SSO token defined by the OAuth Provider
+   * @member {Date} oauth_token_expiration
+   */
+  exports.prototype['oauth_token_expiration'] = undefined;
 
 
 

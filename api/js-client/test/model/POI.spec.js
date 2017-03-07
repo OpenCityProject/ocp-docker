@@ -9,17 +9,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 (function(root, factory) {
@@ -39,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new OpenCityProjectApi.POI();
+    instance = new OpenCityProjectApi.Poi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -58,46 +47,100 @@
       object[property] = value;
   }
 
-  describe('POI', function() {
-    it('should create an instance of POI', function() {
-      // uncomment below and update the code to test POI
-      //var instane = new OpenCityProjectApi.POI();
-      //expect(instance).to.be.a(OpenCityProjectApi.POI);
+  describe('Poi', function() {
+    it('should create an instance of Poi', function() {
+      // uncomment below and update the code to test Poi
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be.a(OpenCityProjectApi.Poi);
     });
 
-    it('should have the property poiId (base name: "poi_id")', function() {
-      // uncomment below and update the code to test the property poiId
-      //var instane = new OpenCityProjectApi.POI();
+    it('should have the property id (base name: "id")', function() {
+      // uncomment below and update the code to test the property id
+      //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });
 
-    it('should have the property poiName (base name: "poi_name")', function() {
-      // uncomment below and update the code to test the property poiName
-      //var instane = new OpenCityProjectApi.POI();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property poiType (base name: "poi_type")', function() {
-      // uncomment below and update the code to test the property poiType
-      //var instane = new OpenCityProjectApi.POI();
+    it('should have the property name (base name: "name")', function() {
+      // uncomment below and update the code to test the property name
+      //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });
 
     it('should have the property gpsLat (base name: "gps_lat")', function() {
       // uncomment below and update the code to test the property gpsLat
-      //var instane = new OpenCityProjectApi.POI();
+      //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });
 
-    it('should have the property gpsLng (base name: "gps_lng")', function() {
-      // uncomment below and update the code to test the property gpsLng
-      //var instane = new OpenCityProjectApi.POI();
+    it('should have the property gpsLong (base name: "gps_long")', function() {
+      // uncomment below and update the code to test the property gpsLong
+      //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });
 
-    it('should have the property category (base name: "category")', function() {
-      // uncomment below and update the code to test the property category
-      //var instane = new OpenCityProjectApi.POI();
+    it('should have the property locationPolygon (base name: "location_polygon")', function() {
+      // uncomment below and update the code to test the property locationPolygon
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property distanceInMetre (base name: "distance_in_metre")', function() {
+      // uncomment below and update the code to test the property distanceInMetre
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property startDate (base name: "start_date")', function() {
+      // uncomment below and update the code to test the property startDate
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property endDate (base name: "end_date")', function() {
+      // uncomment below and update the code to test the property endDate
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property isAllDay (base name: "is_all_day")', function() {
+      // uncomment below and update the code to test the property isAllDay
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property poiUrl (base name: "poi_url")', function() {
+      // uncomment below and update the code to test the property poiUrl
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property description (base name: "description")', function() {
+      // uncomment below and update the code to test the property description
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property isEveryDay (base name: "is_every_day")', function() {
+      // uncomment below and update the code to test the property isEveryDay
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property daysOfWeek (base name: "days_of_week")', function() {
+      // uncomment below and update the code to test the property daysOfWeek
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property categories (base name: "categories")', function() {
+      // uncomment below and update the code to test the property categories
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property tags (base name: "tags")', function() {
+      // uncomment below and update the code to test the property tags
+      //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });
 

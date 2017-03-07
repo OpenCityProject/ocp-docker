@@ -28,7 +28,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new OpenCityProjectApi.Success();
+    instance = new OpenCityProjectApi.RecurrenceApi();
   });
 
   var getProperty = function(object, getter, property) {
@@ -47,31 +47,27 @@
       object[property] = value;
   }
 
-  describe('Success', function() {
-    it('should create an instance of Success', function() {
-      // uncomment below and update the code to test Success
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be.a(OpenCityProjectApi.Success);
+  describe('RecurrenceApi', function() {
+    describe('recurrenceFrequencyAllGET', function() {
+      it('should call recurrenceFrequencyAllGET successfully', function(done) {
+        //uncomment below and update the code to test recurrenceFrequencyAllGET
+        //instance.recurrenceFrequencyAllGET(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property code (base name: "code")', function() {
-      // uncomment below and update the code to test the property code
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be();
+    describe('weekdayAllGET', function() {
+      it('should call weekdayAllGET successfully', function(done) {
+        //uncomment below and update the code to test weekdayAllGET
+        //instance.weekdayAllGET(function(error) {
+        //  if (error) throw error;
+        //expect().to.be();
+        //});
+        done();
+      });
     });
-
-    it('should have the property message (base name: "message")', function() {
-      // uncomment below and update the code to test the property message
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be();
-    });
-
-    it('should have the property _object (base name: "object")', function() {
-      // uncomment below and update the code to test the property _object
-      //var instane = new OpenCityProjectApi.Success();
-      //expect(instance).to.be();
-    });
-
   });
 
 }));
