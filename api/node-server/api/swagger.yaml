@@ -647,26 +647,26 @@ definitions:
         description: "The longitude for the Point of Interest"
       location_polygon:
         type: "string"
-        description: "The location polygon for the Point of Interest"
+        description: "The location polygon for the Point of Interest (currently unused)"
       distance_in_metre:
         type: "integer"
         format: "int32"
-        description: "Distance from a given location, in metre"
+        description: "Distance from a given location, in metres"
       start_date:
         type: "string"
         format: "date-time"
-        description: "The Start Date for the Point of Interest"
+        description: "The Start Time for the Point of Interest in ISO standard. Note: the actual date doesn't matter, only the time (hours and minutes)"
       end_date:
         type: "string"
         format: "date-time"
-        description: "The End Date for the Point of Interest"
+        description: "The End Time for the Point of Interest in ISO standard. Note: the actual date doesn't matter, only the time (hours and minutes)"
       is_all_day:
         type: "boolean"
         description: "Indicates whether the Point of Interest takes place for the\
           \ entire day"
       poi_url:
         type: "string"
-        description: "URL to an external website for the Point of Interest"
+        description: "URL to an external website for the Point of Interest (currently unused)"
       description:
         type: "string"
         description: "Description of what makes the Point of Interest sweet"
@@ -678,11 +678,11 @@ definitions:
         description: "Comma-separated string of numbers: eg. 1,2,3 for Mon, Tues, Wed"
       categories:
         type: "string"
-        description: "A list of categories for the Point of Interest, deliminated\
-          \ by commas"
+        description: "A list of category_ids for the Point of Interest, deliminated\
+          \ by commas (Currently only supports a single category_id i.e. a single integer)"
       tags:
         type: "string"
-        description: "A list of tags for the Point of Interest, deliminated by commas"
+        description: "A list of tags for the Point of Interest, deliminated by commas (current unused)"
     description: "Point of Interest"
   PoiState:
     type: "object"
