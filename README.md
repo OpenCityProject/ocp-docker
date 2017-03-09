@@ -16,6 +16,10 @@ There is a basic api using express in api folder
 There is an API spec for swagger in the api-def folder. Go to http://editor.swagger.io/ and paste it in to the editor.
 From there you can generate a server and a client
 
+### Test pages
+Create a user first: http://localhost/create-user.html  
+Then use that user's email to create POIs: http://localhost/create-poi.html  
+
 ### Details  
 There are 2 main api endpoints which will readily be used:  
   
