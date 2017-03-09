@@ -667,6 +667,9 @@ definitions:
         type: "boolean"
         description: "Indicates whether the Point of Interest takes place for the\
           \ entire day"
+      days_available:
+        type: "string"
+        description: "Comma separated list of days that the POI is available, eg. '1,2' = Monday and Tuesday, '6,7' = weekends only"
       poi_url:
         type: "string"
         description: "URL to an external website for the Point of Interest (currently unused)"

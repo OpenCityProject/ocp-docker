@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | Unique identifier representing a specific point of interest for a given latitude &amp; longitude | [optional] 
 **name** | **String** | The name of the Point of Interest | [optional] 
+**author** | **String** | The name of the author who suggest this Point of Interest | [optional] 
 **gpsLat** | **String** | The latitude for the Point of Interest | [optional] 
 **gpsLong** | **String** | The longitude for the Point of Interest | [optional] 
 **locationPolygon** | **String** | The location polygon for the Point of Interest (currently unused) | [optional] 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **startDate** | **Date** | The Start Time for the Point of Interest in ISO standard. Note: the actual date doesn&#39;t matter, only the time (hours and minutes) | [optional] 
 **endDate** | **Date** | The End Time for the Point of Interest in ISO standard. Note: the actual date doesn&#39;t matter, only the time (hours and minutes) | [optional] 
 **isAllDay** | **Boolean** | Indicates whether the Point of Interest takes place for the entire day | [optional] 
+**daysAvailable** | **String** | Comma separated list of days that the POI is available, eg. &#39;1,2&#39; &#x3D; Monday and Tuesday, &#39;6,7&#39; &#x3D; weekends only | [optional] 
 **poiUrl** | **String** | URL to an external website for the Point of Interest (currently unused) | [optional] 
 **description** | **String** | Description of what makes the Point of Interest sweet | [optional] 
 **isEveryDay** | **Boolean** | Whether or not the POI can be visited every day | [optional] 

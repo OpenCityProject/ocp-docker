@@ -61,6 +61,8 @@
 
 
 
+
+
   };
 
   /**
@@ -79,6 +81,9 @@
       }
       if (data.hasOwnProperty('name')) {
         obj['name'] = ApiClient.convertToType(data['name'], 'String');
+      }
+      if (data.hasOwnProperty('author')) {
+        obj['author'] = ApiClient.convertToType(data['author'], 'String');
       }
       if (data.hasOwnProperty('gps_lat')) {
         obj['gps_lat'] = ApiClient.convertToType(data['gps_lat'], 'String');
@@ -100,6 +105,9 @@
       }
       if (data.hasOwnProperty('is_all_day')) {
         obj['is_all_day'] = ApiClient.convertToType(data['is_all_day'], 'Boolean');
+      }
+      if (data.hasOwnProperty('days_available')) {
+        obj['days_available'] = ApiClient.convertToType(data['days_available'], 'String');
       }
       if (data.hasOwnProperty('poi_url')) {
         obj['poi_url'] = ApiClient.convertToType(data['poi_url'], 'String');
@@ -133,6 +141,11 @@
    * @member {String} name
    */
   exports.prototype['name'] = undefined;
+  /**
+   * The name of the author who suggest this Point of Interest
+   * @member {String} author
+   */
+  exports.prototype['author'] = undefined;
   /**
    * The latitude for the Point of Interest
    * @member {String} gps_lat
@@ -168,6 +181,11 @@
    * @member {Boolean} is_all_day
    */
   exports.prototype['is_all_day'] = undefined;
+  /**
+   * Comma separated list of days that the POI is available, eg. '1,2' = Monday and Tuesday, '6,7' = weekends only
+   * @member {String} days_available
+   */
+  exports.prototype['days_available'] = undefined;
   /**
    * URL to an external website for the Point of Interest (currently unused)
    * @member {String} poi_url

@@ -66,6 +66,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property author (base name: "author")', function() {
+      // uncomment below and update the code to test the property author
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
     it('should have the property gpsLat (base name: "gps_lat")', function() {
       // uncomment below and update the code to test the property gpsLat
       //var instane = new OpenCityProjectApi.Poi();
@@ -104,6 +110,12 @@
 
     it('should have the property isAllDay (base name: "is_all_day")', function() {
       // uncomment below and update the code to test the property isAllDay
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
+    it('should have the property daysAvailable (base name: "days_available")', function() {
+      // uncomment below and update the code to test the property daysAvailable
       //var instane = new OpenCityProjectApi.Poi();
       //expect(instance).to.be();
     });

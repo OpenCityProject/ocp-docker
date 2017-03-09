@@ -55,7 +55,18 @@ module.exports = {
                     SELECT person_name\
                     FROM person\
                     WHERE poi.who_added_person_id = person.person_id\
-                ) AS author`))
+                ) AS author,\
+                CASE\
+                    WHEN poi.recurrence_rule_id != 1 THEN
+                        (\
+                            SELECT array_agg(weekday_id)\
+                            FROM recurrence_day_of_week\
+                                INNER JOIN recurrence_rule ON recurrence_rule.recurrence_rule_id = recurrence_day_of_week.recurrence_rule_id\
+                            WHERE poi.recurrence_rule_id = recurrence_rule.recurrence_rule_id\
+                        )\
+                    WHEN poi.recurrence_rule_id = 1 THEN\
+                        ARRAY[1,2,3,4,5,6,7]\
+                END AS days_available`))
             .from('poi')
             .where(knex.raw(`\
                 (\
