@@ -639,6 +639,9 @@ definitions:
       name:
         type: "string"
         description: "The name of the Point of Interest"
+      author:
+        type: "string"
+        description: "The name of the author who suggest this Point of Interest"
       gps_lat:
         type: "string"
         description: "The latitude for the Point of Interest"

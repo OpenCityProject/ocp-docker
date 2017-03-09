@@ -50,7 +50,12 @@ module.exports = {
                     FROM poi_tag\
                         INNER JOIN tag ON tag.tag_id = poi_tag.tag_id\
                     WHERE poi_tag.poi_id = poi.poi_id\
-                ) AS tags`))
+                ) AS tags,\
+                 (\
+                    SELECT person_name\
+                    FROM person\
+                    WHERE poi.who_added_person_id = person.person_id\
+                ) AS author`))
             .from('poi')
             .where(knex.raw(`\
                 (\
