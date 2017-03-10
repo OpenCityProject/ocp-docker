@@ -63,6 +63,7 @@
 
 
 
+
   };
 
   /**
@@ -84,6 +85,9 @@
       }
       if (data.hasOwnProperty('author')) {
         obj['author'] = ApiClient.convertToType(data['author'], 'String');
+      }
+      if (data.hasOwnProperty('address')) {
+        obj['address'] = ApiClient.convertToType(data['address'], 'String');
       }
       if (data.hasOwnProperty('gps_lat')) {
         obj['gps_lat'] = ApiClient.convertToType(data['gps_lat'], 'String');
@@ -142,10 +146,15 @@
    */
   exports.prototype['name'] = undefined;
   /**
-   * The name of the author who suggest this Point of Interest
+   * The name of the author who suggested this Point of Interest
    * @member {String} author
    */
   exports.prototype['author'] = undefined;
+  /**
+   * The address of the location of the Point of Interest
+   * @member {String} address
+   */
+  exports.prototype['address'] = undefined;
   /**
    * The latitude for the Point of Interest
    * @member {String} gps_lat

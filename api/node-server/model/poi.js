@@ -29,6 +29,7 @@ module.exports = {
 				location_gps_coordinate[0] AS gps_lat,\
 				location_gps_coordinate[1] AS gps_long,\
 				location_polygon,\
+                location_title AS address,\
 				CASE\
 				    WHEN location_gps_coordinate IS NOT NULL THEN\
 				        ST_Distance(ST_GeogFromText(ST_AsText(location_gps_coordinate::geometry)), ST_GeogFromText('SRID=4326;POINT(${lat} ${long})'))\

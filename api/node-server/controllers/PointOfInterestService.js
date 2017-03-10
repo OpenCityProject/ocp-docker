@@ -220,7 +220,7 @@ exports.poiPOST = function(args, auth, res, next) {
         getRecurrenceRule(poiDTO, function(recurrenceRuleId) { //pass in function as callback
             var poi = {
                 poi_name: poiDTO.name,
-                location_title: poiDTO.name,
+                location_title: poiDTO.address,
                 location_gps_coordinate: knex.raw('point(10, 10)'),
                 location_polygon: poiDTO.location_polygon,
                 recurrence_rule_id: recurrenceRuleId,

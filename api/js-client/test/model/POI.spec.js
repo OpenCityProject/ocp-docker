@@ -72,6 +72,12 @@
       //expect(instance).to.be();
     });
 
+    it('should have the property address (base name: "address")', function() {
+      // uncomment below and update the code to test the property address
+      //var instane = new OpenCityProjectApi.Poi();
+      //expect(instance).to.be();
+    });
+
     it('should have the property gpsLat (base name: "gps_lat")', function() {
       // uncomment below and update the code to test the property gpsLat
       //var instane = new OpenCityProjectApi.Poi();

@@ -17,11 +17,14 @@
         <label for="sweetFreeThing">Name of Sweet Free Thing:</label>
         <input type="text" id="sweetFreeThing">
     </div>
+	<div>
+		<label for="address">Address:</label>
+        <input type="text" id="address">
+	</div>
      <div>
         <label for="description">What makes it sweet?</label>
         <input type="text" id="description">
     </div>
-	<div>
 	<div>
         <label for="start-time">Start Time:</label>
 		<input type="time" id="start-time" value="00:00">
@@ -30,7 +33,7 @@
 		<input type="checkbox" id="is-all-day"> All Day<br>
 	</div>
 	<div>
-        <label for="description">What days is it available? (eg. 1 = Monday, 2 = Tuesday, etc.)</label>
+        <label for="days-available">What days is it available? (eg. 1 = Monday, 2 = Tuesday, etc.)</label>
         <input type="text" id="days-available" placeholder="1,2,3">
 		<input type="checkbox" id="is-every-day" checked="true"> Every Day (ignores previous box)<br>
     </div>
@@ -46,6 +49,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Author</th>
+				<th>Address</th>
 				<th>What makes it sweet</th>
 				<th>Start time</th>
 				<th>End time</th>
@@ -85,7 +89,7 @@
 				console.log(data);
 				var table = $("#table tbody");
 				$.each(data, function(idx, elem){
-					table.append("<tr><td>"+elem.name+"</td><td>" + elem.author + "</td><td>"+elem.description+"</td><td>"+elem.start_date+
+					table.append("<tr><td>"+elem.name+"</td><td>" + elem.author + "</td><td>"+elem.address+"</td><td>"+elem.description+"</td><td>"+elem.start_date+
 					"</td><td>"+elem.end_date+"</td><td>"+elem.days_available+"</td><td>"+elem.categories+"</td></tr>");
 				});
 			}
@@ -98,6 +102,7 @@
 		var email = document.getElementById("email").value;
 		var name = document.getElementById("sweetFreeThing").value;
 		var description = document.getElementById("description").value;
+		var address = document.getElementById("address").value;
 		var category = document.getElementById("category").value;
 		var startTime = document.getElementById("start-time").value;
 		var startDate = new Date(), endDate = new Date();
@@ -110,7 +115,7 @@
 		var isEveryDay = document.getElementById("is-every-day").checked; //boolean
 		var daysOfWeek = document.getElementById("days-available").value;
 
-		data = { name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, start_date: startDate.toISOString(), end_date: endDate.toISOString(), is_all_day: isAllDay, 
+		data = { name: name, gps_lat: "10", gps_long: "10", distanceInMetres: 100, address: address, start_date: startDate.toISOString(), end_date: endDate.toISOString(), is_all_day: isAllDay, 
 					poi_url: "", description: description, categories: category, tags: "", is_every_day: isEveryDay, days_of_week: daysOfWeek }
 	  	var xhr = new XMLHttpRequest();
 	  	xhr.open('POST', '/v1/poi', true);

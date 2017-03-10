@@ -5,7 +5,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** | Unique identifier representing a specific point of interest for a given latitude &amp; longitude | [optional] 
 **name** | **String** | The name of the Point of Interest | [optional] 
-**author** | **String** | The name of the author who suggest this Point of Interest | [optional] 
+**author** | **String** | The name of the author who suggested this Point of Interest | [optional] 
+**address** | **String** | The address of the location of the Point of Interest | [optional] 
 **gpsLat** | **String** | The latitude for the Point of Interest | [optional] 
 **gpsLong** | **String** | The longitude for the Point of Interest | [optional] 
 **locationPolygon** | **String** | The location polygon for the Point of Interest (currently unused) | [optional] 
