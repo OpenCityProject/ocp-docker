@@ -89,8 +89,8 @@
 				console.log(data);
 				var table = $("#table tbody");
 				$.each(data, function(idx, elem){
-					table.append("<tr><td>"+elem.name+"</td><td>" + elem.author + "</td><td>"+elem.address+"</td><td>"+elem.description+"</td><td>"+elem.start_date+
-					"</td><td>"+elem.end_date+"</td><td>"+elem.days_available+"</td><td>"+elem.categories+"</td></tr>");
+					table.append("<tr><td>"+elem.name+"</td><td>" + elem.author + "</td><td>"+elem.address+"</td><td>"+elem.description+"</td><td>"+new Date(elem.start_date)+
+					"</td><td>"+new Date(elem.end_date)+"</td><td>"+elem.days_available+"</td><td>"+elem.categories+"</td></tr>");
 				});
 			}
 		}
