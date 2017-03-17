@@ -32,7 +32,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Category"
     post:
       tags:
       - "Point of Interest"
@@ -54,7 +54,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Category"
   /category/{id}:
     delete:
       tags:
@@ -76,7 +76,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Category"
     patch:
       tags:
       - "Point of Interest"
@@ -103,7 +103,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Category"
   /poi:
     get:
       tags:
@@ -366,7 +366,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Tag"
     post:
       tags:
       - "Point of Interest"
@@ -388,7 +388,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Tag"
   /tag/{id}:
     delete:
       tags:
@@ -410,7 +410,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Tag"
     patch:
       tags:
       - "Point of Interest"
@@ -437,7 +437,7 @@ paths:
           description: "Unexpected error"
           schema:
             $ref: "#/definitions/Error"
-      x-swagger-router-controller: "PointOfInterest"
+      x-swagger-router-controller: "Tag"
   /users:
     get:
       tags:

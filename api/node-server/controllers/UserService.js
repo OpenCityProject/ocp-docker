@@ -10,19 +10,15 @@ exports.userDELETE = function(args, res, next) {
    * userId String The ID of the user
    * returns Success
    **/
-  var examples = {};
-  examples['application/json'] = {
-    "code": 123,
-    "message": "aeiou",
-    "object": "{}"
-  };
-  if (Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  } else {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.end();
-  }
+    const query = userModel.deleteUser(args.userId.value)
+    query.then(response => {
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
+    }).catch(err => {
+        console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end(JSON.stringify(err));
+    })
 }
 
 exports.userGET = function(args, res, next) {
@@ -57,19 +53,25 @@ exports.userPATCH = function(args, res, next) {
    * user User The User object
    * returns Success
    **/
-  var examples = {};
-  examples['application/json'] = {
-    "code": 123,
-    "message": "aeiou",
-    "object": "{}"
-  };
-  if (Object.keys(examples).length > 0) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
-  } else {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.end();
-  }
+    var personDTO = args.user.value;
+    var person = {
+        person_name: personDTO.name,
+        phone_number: "1111-2222",
+        email: personDTO.email,
+        person_type_id: 1,
+        oauth_token: "Abcdefghijklmno",
+        oauth_token_expiration: "9999-9-9",
+        person_state_id: "1",
+    }
+    const query = userModel.editUser(args.userId.value, person);
+    query.then(response => {
+        res.writeHead(204, {'Content-Type': 'text/plain'});
+        res.end();
+    }).catch(err => {
+        console.error('Error', err);
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end(JSON.stringify(err));
+    })
 }
 
 exports.userPOST = function(args, res, next) {

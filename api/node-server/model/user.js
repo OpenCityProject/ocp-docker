@@ -20,5 +20,11 @@ module.exports = {
   },
   getUserIdByEmail(email) {
     return knex.select('person_id').from('person').where('email', email);
+  },
+  deleteUser(userId) {
+    return knex('person').where('person_id', userId).del();
+  },
+  editUser(userId, person) {
+    return knex('person').where('person_id', userId).update(person);
   }
 }

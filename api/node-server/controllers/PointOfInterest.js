@@ -4,22 +4,6 @@ var url = require('url');
 
 var PointOfInterest = require('./PointOfInterestService');
 
-module.exports.categoryGET = function categoryGET (req, res, next) {
-  PointOfInterest.categoryGET(req.swagger.params, res, next);
-};
-
-module.exports.categoryIdDELETE = function categoryIdDELETE (req, res, next) {
-  PointOfInterest.categoryIdDELETE(req.swagger.params, res, next);
-};
-
-module.exports.categoryIdPATCH = function categoryIdPATCH (req, res, next) {
-  PointOfInterest.categoryIdPATCH(req.swagger.params, res, next);
-};
-
-module.exports.categoryPOST = function categoryPOST (req, res, next) {
-  PointOfInterest.categoryPOST(req.swagger.params, res, next);
-};
-
 module.exports.poiAllGET = function poiAllGET (req, res, next) {
   PointOfInterest.poiAllGET(req.swagger.params, res, next);
 };
