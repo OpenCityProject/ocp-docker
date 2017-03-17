@@ -86,7 +86,7 @@ exports.poiGET = function(args, res, next) {
     })
 }
 
-exports.poiPATCH = function(args, res, next) {
+exports.poiPATCH = function(args, auth, res, next) {
     /**
      * Update Point of Interest
      * Update a specific Point of Interest. 
@@ -95,25 +95,46 @@ exports.poiPATCH = function(args, res, next) {
      * poi Poi Point of Interest object (optional)
      * returns Success
      **/
-    console.log(args.poiId.value);
-    var poiDTO = args.poi.value;
-    var poi = {
-        poi_id: poiDTO.id,
-        poi_name: poiDTO.name,
-        location_title: "unknown",
-        location_polygon: poiDTO.location_polygon,
-        recurrence_rule_id: 12345,
-        start_date: poiDTO.start_date,
-        end_date: poiDTO.end_date,
-        poi_url: poiDTO.poi_url,
-        poi_description: poiDTO.description,
-        poi_state_id: 1,
-        who_added_patron_id: "009b4c56-e2c9-11e6-940b-6f54577f0d9d"
-    }
-    const query = poiModel.updatePoi(args.poiId.value, poi);
-    query.then(response => {
-        res.writeHead(204, {'Content-Type': 'text/plain'});
-        res.end();
+    var poiId = args.poiId.value;
+    console.log(auth);
+    var credentials = new Buffer(auth.split(" ").pop(), "base64").toString("ascii").split(":"); 
+    // TODO check password
+
+    // first find user by id
+    const userQuery = userModel.getUserIdByEmail(credentials[0]); //credentials [0] should be email (using basic auth)
+    userQuery.then(response => {
+        console.log(response[0].person_id);
+        var poiDTO = args.poi.value;
+        
+        // add recurrence recurrence rule 
+        getRecurrenceRule(poiDTO, function(recurrenceRuleId) { //pass in function as callback
+            var poi = {
+                poi_name: poiDTO.name,
+                location_title: poiDTO.address,
+                location_gps_coordinate: knex.raw('point(10, 10)'),
+                location_polygon: poiDTO.location_polygon,
+                recurrence_rule_id: recurrenceRuleId,
+                start_date: poiDTO.start_date,
+                end_date: poiDTO.end_date,
+                is_all_day: poiDTO.is_all_day,
+                poi_url: poiDTO.poi_url,
+                poi_description: poiDTO.description,
+                poi_state_id: 1,
+                who_added_person_id: response[0].person_id //person_id of the user email that was inputted
+            }
+            // now create query to update POI
+            const query = poiModel.updatePoi(poiId, poi);
+            query.then(id => {
+                console.log(id[0]);
+                // finally create another query to post category
+                const categoryQuery = poiModel.updatePoiCategory(id[0], poiDTO.categories); // now update category
+                categoryQuery.then(categoryResponse => {
+                    console.log(categoryResponse);
+                    res.writeHead(204, {'Content-Type': 'text/plain'}); // pass this in as a callback
+                    res.end();
+                })
+            })
+        });
     }).catch(err => {
         console.error('Error', err);
         res.writeHead(404, {'Content-Type': 'text/plain'});

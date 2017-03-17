@@ -21,7 +21,7 @@ module.exports.poiGET = function poiGET (req, res, next) {
 };
 
 module.exports.poiPATCH = function poiPATCH (req, res, next) {
-  PointOfInterest.poiPATCH(req.swagger.params, res, next);
+  PointOfInterest.poiPATCH(req.swagger.params, req.headers.authorization, res, next);
 };
 
 module.exports.poiPOST = function poiPOST (req, res, next) {

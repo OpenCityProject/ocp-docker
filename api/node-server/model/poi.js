@@ -75,6 +75,9 @@ module.exports = {
     insertPoiCategory(poi_id, category_id) {
         return knex('poi_category').insert({poi_id, category_id});
     },
+    updatePoiCategory(poi_id, category_id) {
+        return knex('poi_category').where('poi_id', poi_id).update({poi_id, category_id});
+    },
     insertPoiRecurrenceRule(first_day_of_the_week, recurrence_frequency_id, interval, recurrence_end_date) {
         return knex('recurrence_rule').insert({ first_day_of_the_week, recurrence_frequency_id, interval, recurrence_end_date}).returning("recurrence_rule_id");
     },
@@ -88,7 +91,7 @@ module.exports = {
         return knex.select().from('poi').where('poi_id', poiId);
     },
     updatePoi(poiId, poi) {
-        return knex('poi').where('poi_id', poiId).update(poi);
+        return knex('poi').where('poi_id', poiId).update(poi).returning("poi_id");
     },
     getPoiState() {
         return knex.select('poi_state_id AS id', 'poi_state_name AS name').from('poi_state');
