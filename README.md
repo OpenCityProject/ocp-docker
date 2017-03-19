@@ -17,16 +17,36 @@ There is an API spec for swagger in the api-def folder. Go to http://editor.swag
 From there you can generate a server and a client
 
 ### Test pages
-Create a user first: http://localhost/create-user.html  
-Then use that user's email to create POIs: http://localhost/create-poi.html  
+Create a user first: http://localhost/create-user.html
+Then use that user's email to create POIs: http://localhost/create-poi.html
 
 ### Details  
-There are 2 main api endpoints which will readily be used:  
-  
-1) User - /v1/user  
-User POST example: ```curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: 9a550192-c030-1789-ed0e-32be9e67cc07" -d '{"name" : "wesley", "email": "wesley@example1.com"}' "http://localhost/v1/users"```  
-2) POI - /v1/poi  
-POI POST example: ```curl -X POST -H "Content-Type: application/json" -H "Authorization: Basic YWRtaW5AbyBjcC5jb206YWRtaW4=" -H "Cache-Control: no-cache" -H "Postman-Token: 463f4a4b-f8ef-61e2-306d-909e952f593d" -d '{"name":"Cathedral Square","gps_lat":"10","gps_long":"10","distanceInMetres":100,"start_date":"2017-03-06T11:00:00.000Z","end_date":"2017-03-06T12:00:00.000Z","is_all_day":true,"poi_url":"","description":"It'\''s a historic site","categories":"6","tags":"","is_every_day":true,"days_of_week":"1,2,3"}' "http://localhost/v1/poi"```
+There are 2 main api endpoints which will readily be used:
+
+#### User - /v1/user
+User POST example:
+
+```bash
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "Cache-Control: no-cache" \
+    -H "Postman-Token: 9a550192-c030-1789-ed0e-32be9e67cc07" \
+    -d '{"name" : "wesley", "email": "wesley@example1.com"}' \
+    "http://localhost/v1/users"
+```  
+
+#### POI - /v1/poi
+POI POST example:
+
+```bash
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Basic YWRtaW5AbyBjcC5jb206YWRtaW4=" \
+    -H "Cache-Control: no-cache" \
+    -H "Postman-Token: 463f4a4b-f8ef-61e2-306d-909e952f593d"
+    -d '{"name":"Cathedral Square","gps_lat":"10","gps_long":"10","distanceInMetres":100,"start_date":"2017-03-06T11:00:00.000Z","end_date":"2017-03-06T12:00:00.000Z","is_all_day":true,"poi_url":"","description":"It'"'"'s a historic site","categories":"6","tags":"","is_every_day":true,"days_of_week":"1,2,3"}' \
+    "http://localhost/v1/poi"
+```
 
 Database
 --------
